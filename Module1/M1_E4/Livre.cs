@@ -5,12 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace M1_E1
+namespace M1_E4
 {
     /// <summary>
     /// La classe livre qui contient les informations sur le livre
     /// </summary>
-    class Livre
+    class Livre : IComparable
     {
         private int _nombrePages;  // nécessaire car la propriété implémente une validation
 
@@ -102,6 +102,23 @@ namespace M1_E1
             chaine.Append(Annee.ToString());
             chaine.Append(".");
             return chaine.ToString();
+        }
+
+        /// <summary>
+        /// On compare les titres des livres pour les mettre en ordre alphabétique
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns>Un entier qui compare les titres des livres</returns>
+        public int CompareTo(object? obj)
+        {
+            Livre? autre = obj as Livre;
+
+            // autre sera null si obj est null ou encore si obj n'est pas un livre
+            if (autre == null)
+            {
+                throw new ArgumentException("Pas un livre");
+            }
+            return Titre.CompareTo(autre.Titre);
         }
     }
 }
