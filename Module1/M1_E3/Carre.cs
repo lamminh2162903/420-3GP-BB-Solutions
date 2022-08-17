@@ -4,11 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace M1_E2
+namespace M1_E3
 {
+    /// <summary>
+    /// La classe Carre.
+    /// </summary>
     class Carre : Rectangle
     {
-        public Carre (double cote) : base(cote, cote)
+        /// <summary>
+        /// Constructeur.
+        /// </summary>
+        /// <param name="cote">La taille d'un côté</param>
+        public Carre(double cote) : base(cote, cote)
         {
         }
     }

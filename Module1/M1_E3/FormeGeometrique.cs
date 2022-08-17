@@ -1,4 +1,4 @@
-﻿namespace M1_E2
+﻿namespace M1_E3
 {
     /// <summary>
     /// Classe abstraite qui représente une forme géométrique

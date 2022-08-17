@@ -1,21 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Exercice_2
+﻿namespace M1_E3
 {
+    /// <summary>
+    /// La classe Cercle
+    /// </summary>
     class Cercle : FormeGeometrique
     {
         private double _rayon;
+
+        /// <summary>
+        /// Le rayon du cercle
+        /// </summary>
         public double Rayon
         {
-            get 
+            get
             {
                 return _rayon;
             }
-            
+
             private set
             {
                 if (value <= 0.0)
@@ -26,15 +27,22 @@ namespace Exercice_2
             }
         }
 
-        public Cercle (double rayon)
+        /// <summary>
+        /// Constructeur.
+        /// </summary>
+        /// <param name="rayon">Le rayon du cercle</param>
+        public Cercle(double rayon)
         {
             Rayon = rayon;
         }
 
-
+        /// <summary>
+        /// Retourne le périmètre en fonction du rayon
+        /// </summary>
+        /// <returns>Le primètre</returns>
         public override double CalculerPerimetre()
         {
-            return  2 * Math.PI * Rayon;
+            return 2 * Math.PI * Rayon;
         }
     }
 }

@@ -1,13 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace M1_E3
+﻿namespace M1_E3
 {
+    /// <summary>
+    /// Interface pour les formes géométriques qui peuvent être dessinées.
+    /// </summary>
     interface IDessinable
     {
-        public void DessinerObjet();
+        /// <summary>
+        /// Ne dessine pas directement la chaîne mais retourne une représentation sous la forme d'une chaîne.
+        /// </summary>
+        /// <returns>Le dessin de la forme</returns>
+        public string DessinerObjet();
     }
 }

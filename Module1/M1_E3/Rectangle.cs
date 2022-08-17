@@ -1,22 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
 
 namespace M1_E3
 {
+    /// <summary>
+    /// La classe Rectangle
+    /// </summary>
     class Rectangle : FormeGeometrique, IDessinable
     {
         private double _largeur;
         private double _longueur;
+        /// <summary>
+        /// La largeur du rectangle
+        /// </summary>
         public double Largeur
         {
-            get 
+            get
             {
                 return _largeur;
             }
-            
+
             private set
             {
                 if (value <= 0.0)
@@ -27,6 +29,9 @@ namespace M1_E3
             }
         }
 
+        /// <summary>
+        /// La longueur du rectangle
+        /// </summary>
         public double Longueur
         {
             get
@@ -44,30 +49,45 @@ namespace M1_E3
             }
         }
 
+        /// <summary>
+        /// Constructeur.
+        /// </summary>
+        /// <param name="largeur">La largeur</param>
+        /// <param name="longueur">La longueur</param>
         public Rectangle(double largeur, double longueur)
         {
             Largeur = largeur;
             Longueur = longueur;
         }
 
+        /// <summary>
+        /// Le périmètre est la somme des longueur et largeur * 2.
+        /// </summary>
+        /// <returns>Le périmètre</returns>
         public override double CalculerPerimetre()
         {
-            return Largeur * 2 + Longueur * 2;
+            return (Largeur + Longueur) * 2;
         }
 
-        public void DessinerObjet()
+        /// <summary>
+        /// Permet de dessiner un rectangle. On commence par prendre le plafond des
+        /// longueurs et hauteurs
+        /// </summary>
+        public string DessinerObjet()
         {
-            int longueur = (int) Math.Ceiling(Longueur);
+            StringBuilder dessin = new StringBuilder();
+            int longueur = (int)Math.Ceiling(Longueur);
             int largeur = (int)Math.Ceiling(Largeur);
 
-            for (int i=0; i<longueur; i++)
+            for (int i = 0; i < longueur; i++)
             {
-                for (int j=0; j<largeur; j++)
+                for (int j = 0; j < largeur; j++)
                 {
-                    Console.Write('*');
+                    dessin.Append('*');
                 }
-                Console.WriteLine();
+                dessin.Append('\n');
             }
+            return dessin.ToString();
         }
     }
 }
