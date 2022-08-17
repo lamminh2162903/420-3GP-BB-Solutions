@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31613.86
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Exercice1-3", "Exercice1-3\Exercice1-3.csproj", "{9E32263E-8766-4988-B913-F5F33D1D72C0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "M2_E1", "M2_E1\Exercice1-3.csproj", "{9E32263E-8766-4988-B913-F5F33D1D72C0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Exercice2", "Exercice2\Exercice2.csproj", "{AFE8BA39-C320-4376-A616-BF2871FDB8B2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "M2_E2", "M2_E2\Exercice2.csproj", "{AFE8BA39-C320-4376-A616-BF2871FDB8B2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Exercice4", "Exercice4\Exercice4.csproj", "{5301C2A5-A5D2-41D3-89E0-DA3E41D325AA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "M2_E4", "M2_E4\Exercice4.csproj", "{5301C2A5-A5D2-41D3-89E0-DA3E41D325AA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Exercice5", "Exercice5\Exercice5.csproj", "{5E8C9F05-ADB8-4AD8-883A-42BE6F0DBCF4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "M2_E5", "M2_E5\Exercice5.csproj", "{5E8C9F05-ADB8-4AD8-883A-42BE6F0DBCF4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exercice6", "Exercice6\Exercice6.csproj", "{A6834376-2DBC-4675-B7B8-041428D5395E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "M2_E6", "M2_E6\Exercice6.csproj", "{A6834376-2DBC-4675-B7B8-041428D5395E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
