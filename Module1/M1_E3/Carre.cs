@@ -4,10 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Exercice_2
+namespace M1_E2
 {
-    interface IDessinable
+    class Carre : Rectangle
     {
-        public void DessinerObjet();
+        public Carre (double cote) : base(cote, cote)
+        {
+        }
     }
 }

@@ -4,49 +4,77 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Exercice_1
+
+namespace M1_E1
 {
+    /// <summary>
+    /// La classe livre qui contient les informations sur le livre
+    /// </summary>
     class Livre : IComparable
     {
+        private int _nombrePages;  // nécessaire car la propriété implémente une validation
+
+        /// <summary>
+        /// Le titre
+        /// </summary>
         public string Titre
         {
-            set;
+            private set;
             get;
         }
 
+        /// <summary>
+        /// L'auteur du livre
+        /// </summary>
         public string Auteur
         {
-            set;
+            private set;
             get;
         }
 
+        /// <summary>
+        /// L'éditeur du livre
+        /// </summary>
         public string Editeur
         {
-            set;
+            private set;
             get;
         }
 
+        /// <summary>
+        /// Le nombre de page du livre. Doit être un nombre plus grand que 0
+        /// </summary>
         public int NombrePages
         {
-            set;
-            get;
+            private set
+            {
+                if (value <= 0)
+                {
+                    throw new ArgumentException("Le nombre de pages doit être plus grand que 0");
+                }
+                _nombrePages = value;
+            }
+
+            get => _nombrePages;
         }
 
+        /// <summary>
+        /// L'année du livre
+        /// </summary>
         public int Annee
         {
             set;
             get;
         }
 
-        public Livre()
-        {
-            Titre = "";
-            Auteur = "";
-            Editeur = "";
-            NombrePages = 0;
-            Annee = 0;
-        }
-
+        /// <summary>
+        /// Le constructeur du livre. Toutes les valeurs doivent être spécifiées
+        /// </summary>
+        /// <param name="titre">Le titre du livre</param>
+        /// <param name="auteur">L'auteur du livre</param>
+        /// <param name="editeur">l'éditeur du livre</param>
+        /// <param name="nombrePages">Le nombre de pages, doit être supérieur à 0</param>
+        /// <param name="annee">L'année d'édition du livre</param>
         public Livre(string titre, string auteur, string editeur, int nombrePages, int annee)
         {
             Titre = titre;
@@ -56,6 +84,10 @@ namespace Exercice_1
             Annee = annee;
         }
 
+        /// <summary>
+        /// Retourne les inforations du livre sous la forme d'une chaîne de caractères.
+        /// </summary>
+        /// <returns>Les informations sur le livre</returns>
         public override string ToString()
         {
             StringBuilder chaine = new StringBuilder();
@@ -72,11 +104,15 @@ namespace Exercice_1
             return chaine.ToString();
         }
 
+        /// <summary>
+        /// On compare les titres des livres pour les mettre en ordre alphabétique
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public  int CompareTo(object obj)
         {
-            Livre autre = (Livre) obj;
+            Livre autre = obj as Livre;   // Ou (Livre) obj;
             return Titre.CompareTo(autre.Titre);
         }
-
     }
 }
