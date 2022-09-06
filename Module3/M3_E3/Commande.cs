@@ -12,7 +12,7 @@ namespace M3_E3
     /// </summary>
     internal class Commande
     {
-        private object VERROU_NO = new object();  // Objet pour synchroniser le no de commande (si plus d'un thread crée des commandes)
+        private static object VERROU_NO = new object();  // Objet pour synchroniser le no de commande (si plus d'un thread crée des commandes)
 
         private static int noCommande = 0;  // Pour générer des numéros de commandes uniques automatiquement 
 
