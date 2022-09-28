@@ -14,7 +14,7 @@ namespace M3_E3
     {
         private static object VERROU_NO = new object();  // Objet pour synchroniser le no de commande (si plus d'un thread crée des commandes)
 
-        private static int noCommande = 0;  // Pour générer des numéros de commandes uniques automatiquement 
+        private static int prochainNumero = 0;  // Pour générer des numéros de commandes uniques automatiquement 
 
         /// <summary>
         /// Le constructeur
@@ -26,7 +26,7 @@ namespace M3_E3
 
             lock (VERROU_NO)
             {
-                NoCommande = noCommande++;
+                NoCommande = prochainNumero++;
             }
         }
 
