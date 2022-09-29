@@ -11,11 +11,9 @@ if (! File.Exists(pathFichier))
 }
 
 
-// Chargement des fichiers
-
+// Chargement du fichier
 XmlDocument document = new XmlDocument();
 document.Load(pathFichier);
-
 
 // Récupération de la racine
 XmlElement root = document.DocumentElement;
@@ -83,4 +81,3 @@ if (elementBurns != null)
     XmlElement description = elementBurns["description"];
     Console.WriteLine($"La description de monsier Burns est:\n{description.InnerText.Trim()}");
 }
-
