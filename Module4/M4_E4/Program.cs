@@ -3,7 +3,10 @@ using System.Xml.Linq;
 using Contacts;
 using Utilitaires;
 
-string pathFichier = $"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}\\Fichiers-3GP\\contacts.xml";
+char DIR_SEPARATOR = Path.DirectorySeparatorChar;
+
+string pathFichier = $"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}{DIR_SEPARATOR}" +
+                     $"Fichiers-3GP{DIR_SEPARATOR}contacts.xml";
 
 // On vérifie si le fichier contacts.xml existe 
 if (!File.Exists(pathFichier))
@@ -59,5 +62,4 @@ void SauvegarderContacts(List<Contact> lesContacts, string pathFichier)
         racine.AppendChild(element);
     }
     document.Save(pathFichier);
-
 }
