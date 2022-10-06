@@ -1,5 +1,7 @@
 ﻿using System.IO;
 
+char DIR_SEPARATOR = Path.DirectorySeparatorChar;   // Permet d'avoir un séparateur portable
+
 Console.WriteLine("Dans cet exercice, il fallait créer le fichier XML dans un dossier Fichiers-3GP.");
 Console.WriteLine("Bonnne nouvelle !! Ce programme place justement le fichier au bon endroit.");
 
@@ -22,9 +24,9 @@ bool ConfirmerOperation(string description)
 void CopierFichier(string nomFichier)
 {
     string pathMesDocuments = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-    string pathDossier = $"{pathMesDocuments}/Fichiers-3GP";
-    string pathFichier = $"{pathDossier}/{nomFichier}";
-
+    string pathDossier = $"{pathMesDocuments}{DIR_SEPARATOR}Fichiers-3GP";
+    string pathFichier = $"{pathDossier}{DIR_SEPARATOR}{nomFichier}";
+ 
     // Création du dossier s'il n'existe pas
     if (! Directory.Exists(pathDossier))
     {
