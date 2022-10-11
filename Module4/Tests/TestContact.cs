@@ -20,6 +20,7 @@ namespace Contacts
         [SetUp]
         public void Setup()
         {
+            // On essaie autant que possible d'éviter l'ouverture de fichiers dans le cadre des tests.
             contact = @$"<contact nom=""{nom}"" prenom=""{prenom}"">
                 <adresse numero = ""{numero}"" rue=""{rue}"" />
                 <description>{description}</description>
