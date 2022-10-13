@@ -48,7 +48,8 @@ foreach (XmlNode node in elements)
     XmlElement? element = node as XmlElement;
     if (element != null)
     {
-        if (element.GetAttribute("nom").Equals("Flanders"))
+        if (element.GetAttribute("nom").Equals("Flanders") 
+            && element.GetAttribute("prenom").Equals("Ned"))
         {
             elementNed = element;
             break;
@@ -71,7 +72,8 @@ foreach (XmlNode node in elements)
     XmlElement? element = node as XmlElement;
     if (element != null)
     {
-        if (element.GetAttribute("nom").Equals("Burns"))
+        if (element.GetAttribute("nom").Equals("Burns")
+            && element.GetAttribute("prenom").Equals("Charles Montgomery"))
         {
             elementBurns = element;
             break;
