@@ -1,0 +1,75 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="M5_E5.MainWindow"
+        Title="Mini éditeur"
+        CanResize="False"
+		Width="800"
+		Height="450">
+
+	<Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="500"/>
+			<ColumnDefinition Width="*"/>
+		</Grid.ColumnDefinitions>
+
+		<DockPanel Grid.Column="0">
+			<TextBlock Name="NomFichier"
+					   Text="Aucun fichier n'est chargé"
+					   FontWeight="Bold"
+					   DockPanel.Dock="Top"
+					   Height="40"
+					   HorizontalAlignment="Center"
+					   Margin="5,5,5,5"
+					   />
+			<TextBox   Name="ZoneTexte"	  
+					   Width="500"
+					   Height="400"
+					   DockPanel.Dock="Bottom"
+					   Margin="5,5,5,5"
+					   TextWrapping="Wrap"
+					   />
+		</DockPanel>
+
+		<StackPanel Grid.Column="1">
+			<TextBlock Text="Menu"
+					   Height="40"
+					   HorizontalAlignment="Center"
+					   Margin="5"
+					   />
+			<Button	Content="Charger un fichier"
+					HorizontalAlignment="Center"
+					HorizontalContentAlignment="Center"
+					Width="150"
+					Margin="5"
+					Click="ChargerFichierClick"
+					/>
+			
+			<Button	Content="Sauvegarder"
+					HorizontalContentAlignment="Center"
+					HorizontalAlignment="Center"
+					Width="150"
+					Margin="5"
+					Click="SauvegarderFichierClick"
+					/>
+			<Button	Content="Sauvegarder sous..."
+					HorizontalContentAlignment="Center"
+					HorizontalAlignment="Center"
+					Width="150"
+					Margin="5"
+					Click="SauvegarderSousClick"
+					/>
+			<Button	Content="Vider le texte"
+					HorizontalContentAlignment="Center"					
+					HorizontalAlignment="Center"
+					Width="150"
+					Margin="5"
+					Click="ViderTexteClick"
+					/>
+		</StackPanel>
+
+	</Grid>        
+
+</Window>
