@@ -7,13 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="data\NoImage.png" />
     <None Remove="Homer_Simpson.png" />
     <None Remove="NoImage.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="data\NoImage.png" />
     <Resource Include="Homer_Simpson.png" />
-    <Resource Include="NoImage.png" />
   </ItemGroup>
 
   <ItemGroup>
