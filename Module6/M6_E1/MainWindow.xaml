@@ -5,7 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DepartExercices"
         mc:Ignorable="d"
-        Title="Contacts" Height="350" Width="600">
+        Title="Carnet adresse" 
+        Height="350" 
+        Width="600"
+        ResizeMode="CanMinimize">
+    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="300"/>
@@ -19,13 +23,6 @@
 
         <StackPanel Grid.Row="0"
                     Grid.Column="0">
-            <WrapPanel Margin="5">
-                <TextBlock Text="No. Client:"
-                           Width="70"/>
-                <TextBlock Name="NoClient"
-                           Width="150"/>
-            </WrapPanel>
-
             <WrapPanel Margin="5">
                 <TextBlock Text="Nom:"
                            Width="70"/>
@@ -43,7 +40,6 @@
             <WrapPanel Margin="5">
                 <TextBlock Text="No. Civique:"
                            Width="70"/>
-
                 <TextBox Name="NoCivique"
                          Width="150"/>
             </WrapPanel>
@@ -51,28 +47,27 @@
             <WrapPanel Margin="5">
                 <TextBlock Text="Rue:"
                            Width="70"/>
-
                 <TextBox Name="Rue"
                          Width="150"/>
             </WrapPanel>
 
             <StackPanel>
-                <Button Name="Ajouter"
+                <Button Name="BoutonAjouter"
                         Content="Ajouter"
                         HorizontalAlignment="Center"
                         Width="150"
                         Margin="0, 10, 0, 0"/>
-                <Button Name="Modifier"
+                <Button Name="BoutonModifier"
                         Content="Modifier"
                         HorizontalAlignment="Center"
                         Width="150"
                         Margin="0, 10, 0, 0"/>
-                <Button Name="Retirer"
+                <Button Name="BoutonRetirer"
                         Content="Retirer"
                         HorizontalAlignment="Center"
                         Width="150"
                         Margin="0, 10, 0, 0"/>
-                <Button Name="Vider"
+                <Button Name="BoutonVider"
                         Content="Vider"
                         HorizontalAlignment="Center"
                         Width="150"
@@ -89,11 +84,11 @@
                     BorderThickness="2"
                     BorderBrush="Black">
 
-                <Image Source="NoImage.png" 
+                <Image Source="assets/NoImage.png" 
                        VerticalAlignment="Center"/>
             </Border>
 
-            <Button Name="ChangerPhoto"
+            <Button Name="BoutonChangerPhoto"
                     Content="Changer photo"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Top"
@@ -104,7 +99,7 @@
         </DockPanel>
 
         <!-- Boutons du bas -->
-        <Button Name="Precedent" 
+        <Button Name="BoutonPrecedent" 
                 Content="Précédent"
                 Grid.Row="1"
                 Grid.Column="0"
@@ -112,7 +107,7 @@
                 Width="150"
                 Margin="5"/>
 
-        <Button Name="Prochain"
+        <Button Name="BoutonProchain"
                 Content="Prochain"
                 Grid.Row="1"
                 Grid.Column="1"

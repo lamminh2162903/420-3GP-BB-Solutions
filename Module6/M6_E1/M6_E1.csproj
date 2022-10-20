@@ -2,16 +2,16 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net5.0-windows</TargetFramework>
+    <TargetFramework>net6.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="NoImage.png" />
+    <None Remove="assets\NoImage.png" />
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="NoImage.png" />
+    <Resource Include="assets\NoImage.png" />
   </ItemGroup>
 
 </Project>
