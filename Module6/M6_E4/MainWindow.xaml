@@ -11,6 +11,29 @@
         ResizeMode="CanMinimize"
         Background="AliceBlue">
 
+    <Window.CommandBindings>
+        <CommandBinding Command="{x:Static local:MainWindow.AProprosCmd}"
+                    Executed="APropos_Executed"
+                    CanExecute="APropos_CanExecute"/>
+        <CommandBinding Command="{x:Static local:MainWindow.OuvrirFichierCmd}"
+                        Executed="OuvrirFichier_Executed"
+                        CanExecute="OuvrirFichier_CanExecute"/>
+        <CommandBinding Command="{x:Static local:MainWindow.EnregistrerFichierCmd}"
+                        Executed="EnregisterFichier_Executed"
+                        CanExecute="EnregisterFichier_CanExecute"/>
+        <CommandBinding Command="{x:Static local:MainWindow.EnregistrerSousFichierCmd}"
+                        Executed="EnregisterSous_Executed"
+                        CanExecute="EnregisterSous_CanExecute"/>
+        <CommandBinding Command="{x:Static local:MainWindow.FermerFichierCmd}"
+                        Executed="FermerFichier_Executed"
+                        CanExecute="FermerFichier_CanExecute"/>
+    </Window.CommandBindings>
+
+    <Window.InputBindings>
+        <KeyBinding Command="{x:Static local:MainWindow.AProprosCmd}"
+                    Key="Esc"/>
+    </Window.InputBindings>
+
     <Window.Resources>
         <Style x:Key="boutonBleu">
             <Setter Property="Button.Background" Value="Blue"/>
@@ -31,17 +54,6 @@
         </Style>
     </Window.Resources>
 
-    <Window.CommandBindings>
-        <CommandBinding Command="{x:Static local:MainWindow.AProprosCmd}"
-                    Executed="APropos_Executed"
-                    CanExecute="APropos_CanExecute"/>
-    </Window.CommandBindings>
-
-    <Window.InputBindings>
-        <KeyBinding Command="{x:Static local:MainWindow.AProprosCmd}"
-                    Key="Esc"/>
-    </Window.InputBindings>
-
     <DockPanel>
         <Menu DockPanel.Dock="Top"
               Style="{StaticResource couleurMenu}">
@@ -49,15 +61,18 @@
                       Style="{StaticResource couleurMenu}">
                 <MenuItem Header="Ouvrir"
                           InputGestureText="Ctrl+O"
-                          Style="{StaticResource couleurMenu}"/>
+                          Style="{StaticResource couleurMenu}"
+                          Command="{x:Static local:MainWindow.OuvrirFichierCmd}"/>
                 <MenuItem Header="Enregistrer"
                           InputGestureText="Ctrl+S"
-                          Style="{StaticResource couleurMenu}"/>
+                          Style="{StaticResource couleurMenu}"
+                          Command="{x:Static local:MainWindow.EnregistrerFichierCmd}"/>
                 <MenuItem Header="Enregistrer sous..."
-                          Style="{StaticResource couleurMenu}"/>
+                          Style="{StaticResource couleurMenu}"
+                          Command="{x:Static local:MainWindow.EnregistrerSousFichierCmd}"/>
                 <MenuItem Header="Fermer"
-                          InputGestureText="Ctrl+Q"
-                          Style="{StaticResource couleurMenu}"/>
+                          Style="{StaticResource couleurMenu}"
+                          Command="{x:Static local:MainWindow.FermerFichierCmd}"/>
             </MenuItem>
 
             <MenuItem Header="_Aide"

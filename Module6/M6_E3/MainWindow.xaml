@@ -45,7 +45,6 @@
                 <MenuItem Header="Enregistrer sous..."
                           Style="{StaticResource couleurMenu}"/>
                 <MenuItem Header="Fermer"
-                          InputGestureText="Ctrl+Q"
                           Style="{StaticResource couleurMenu}"/>
             </MenuItem>
 
