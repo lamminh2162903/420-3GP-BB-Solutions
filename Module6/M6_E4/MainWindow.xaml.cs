@@ -6,6 +6,7 @@ using Contacts;
 using System.Xml;
 using Microsoft.Win32;
 using System.IO;
+using System.Windows.Controls;
 
 namespace M6_E4
 {
@@ -23,20 +24,48 @@ namespace M6_E4
         public static RoutedCommand EnregistrerSousFichierCmd = new RoutedCommand();
         public static RoutedCommand FermerFichierCmd = new RoutedCommand();
 
+        // Commandes pour les boutons
+        public static RoutedCommand AllerProchain = new RoutedCommand();
+        public static RoutedCommand AllerPrecedent = new RoutedCommand();
+
         // Objets pour la gestion des contacts
         private List<Contact> lesContacts;
         private string dossierBase;
         private string pathFichier;
         private char DIR_SEPARATOR = Path.DirectorySeparatorChar;
+        private int indiceCourant;
+        private List<TextBox> champsTexte;
 
         public MainWindow()
         {
-            InitializeComponent();
+            champsTexte = new List<TextBox>();
             lesContacts = new List<Contact>();
+            InitializeComponent();
             dossierBase = $"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}{DIR_SEPARATOR}" +
                           $"Fichiers-3GP";
             pathFichier = dossierBase + DIR_SEPARATOR + "contacts.xml";
+
+            // Ajout des champs texte pour pouvoir les activer et les désactiver
+            champsTexte.Add(Nom);
+            champsTexte.Add(Prenom);
+            champsTexte.Add(NoCivique);
+            champsTexte.Add(Rue);
+
             ChargerContacts(pathFichier);
+            indiceCourant = 0;
+            if (lesContacts.Count > 0)
+            {
+                DataContext = lesContacts[0];
+                ActiverChampsTexte(false);
+            }
+        }
+
+        private void ActiverChampsTexte(bool actif)
+        {
+            foreach(TextBox t in champsTexte)
+            {
+                t.IsReadOnly = ! actif;
+            }
         }
 
         // À propos...
@@ -139,6 +168,32 @@ namespace M6_E4
         private void FermerFichier_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
             e.CanExecute = lesContacts.Count > 0;
+        }
+
+        // Aller au prochain contact
+        private void AllerProchain_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            indiceCourant++;
+            DataContext = lesContacts[indiceCourant];
+        }
+
+        private void AllerProchain_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = lesContacts.Count > 0 &&
+                indiceCourant < lesContacts.Count - 1;
+        }
+
+        // Aller au contact précédent
+        private void AllerPrecedent_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            indiceCourant--;
+            DataContext = lesContacts[indiceCourant];
+        }
+
+        private void AllerPrecedent_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = lesContacts.Count > 0 && 
+                indiceCourant > 0;
         }
     }
 }

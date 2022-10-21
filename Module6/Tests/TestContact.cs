@@ -64,7 +64,7 @@ namespace Contacts
             ChargerContactXML();
 
             // ASSERT
-            Assert.AreEqual(Int32.Parse(numero), leContact.NumeroCivique);
+            Assert.AreEqual(numero, leContact.NumeroCivique);
 
         }
 

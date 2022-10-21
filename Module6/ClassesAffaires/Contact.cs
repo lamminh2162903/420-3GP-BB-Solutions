@@ -6,42 +6,59 @@ namespace Contacts
 {
     public class Contact :IXMLSerializable
     {
-        public Contact(XmlElement elementContact)
-        {
-            FromXML(elementContact);
-        }
-
+        private int numero;
 
         public String Nom
         {
-            private set;
+            set;
             get;
         }
 
         public String Prenom
         {
-            private set;
+            set;
             get;
         }
 
-        public int NumeroCivique
+        public string NumeroCivique
         {
-            private set;
-            get;
+            set
+            {
+                numero = Int32.Parse(value);
+            }
+
+            get
+            {
+                return numero.ToString();
+            }
         }
 
         public String Rue
         {
-            private set;
+            set;
             get;
         }
 
         public String Description
         {
-            private set;
+            set;
             get;
         }
 
+        public Contact()
+        {
+            Nom = "";
+            Prenom = "";
+            numero = 0;
+            Rue = "";
+            Description = "";
+        }
+
+        public Contact(XmlElement elementContact)
+        {
+            FromXML(elementContact);
+        }
+        
         public override string ToString()
         {
             StringBuilder builder = new StringBuilder();
@@ -72,7 +89,7 @@ namespace Contacts
             Prenom = elem.GetAttribute("prenom");
 
             XmlElement adresse = elem["adresse"];
-            NumeroCivique = Int32.Parse(adresse.GetAttribute("numero"));
+            NumeroCivique = adresse.GetAttribute("numero");
             Rue = adresse.GetAttribute("rue");
 
             XmlElement description = elem["description"];

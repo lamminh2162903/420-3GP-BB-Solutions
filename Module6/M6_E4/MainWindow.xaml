@@ -27,6 +27,12 @@
         <CommandBinding Command="{x:Static local:MainWindow.FermerFichierCmd}"
                         Executed="FermerFichier_Executed"
                         CanExecute="FermerFichier_CanExecute"/>
+        <CommandBinding Command="{x:Static local:MainWindow.AllerProchain}"
+                        Executed="AllerProchain_Executed"
+                        CanExecute="AllerProchain_CanExecute"/>
+        <CommandBinding Command="{x:Static local:MainWindow.AllerPrecedent}"
+                        Executed="AllerPrecedent_Executed"
+                        CanExecute="AllerPrecedent_CanExecute"/>
     </Window.CommandBindings>
 
     <Window.InputBindings>
@@ -99,30 +105,34 @@
                     Grid.Column="0">
                 <WrapPanel Margin="5">
                     <TextBlock Text="Nom:"
-                           Style="{StaticResource blocTextes}"/>
+                               Style="{StaticResource blocTextes}"/>
                     <TextBox Name="Nom"
-                         Style="{StaticResource champSaisie}"/>
+                             Text="{Binding Nom, Mode=TwoWay}"
+                             Style="{StaticResource champSaisie}"/>
                 </WrapPanel>
 
                 <WrapPanel Margin="5">
                     <TextBlock Text="Prénom:"
                            Style="{StaticResource blocTextes}"/>
                     <TextBox Name="Prenom"
+                             Text="{Binding Prenom, Mode=TwoWay}"
                          Style="{StaticResource champSaisie}"/>
                 </WrapPanel>
 
                 <WrapPanel Margin="5">
                     <TextBlock Text="No. Civique:"
-                           Style="{StaticResource blocTextes}"/>
+                               Style="{StaticResource blocTextes}"/>
                     <TextBox Name="NoCivique"
-                         Style="{StaticResource champSaisie}"/>
+                             Text="{Binding NumeroCivique, Mode=TwoWay}"
+                             Style="{StaticResource champSaisie}"/>
                 </WrapPanel>
 
                 <WrapPanel Margin="5">
                     <TextBlock Text="Rue:"
                            Style="{StaticResource blocTextes}"/>
                     <TextBox Name="Rue"
-                         Style="{StaticResource champSaisie}"/>
+                             Text="{Binding Rue, Mode=TwoWay}"
+                             Style="{StaticResource champSaisie}"/>
                 </WrapPanel>
 
                 <StackPanel>
@@ -176,19 +186,21 @@
             </DockPanel>
 
             <!-- Boutons du bas -->
-            <Button Name="BoutonPrecedent" 
-                Style="{StaticResource boutonBleu}"
-                Content="Précédent"
-                Grid.Row="1"
-                Grid.Column="0"
-                Height="Auto"
-                Margin="5"/>
-
             <Button Name="BoutonProchain"
                 Style="{StaticResource boutonBleu}"
+                Command="{x:Static local:MainWindow.AllerProchain}"
                 Content="Prochain"
                 Grid.Row="1"
                 Grid.Column="1"
+                Height="Auto"
+                Margin="5"/>
+
+            <Button Name="BoutonPrecedent" 
+                Style="{StaticResource boutonBleu}"
+                Command="{x:Static local:MainWindow.AllerPrecedent}"
+                Content="Précédent"
+                Grid.Row="1"
+                Grid.Column="0"
                 Height="Auto"
                 Margin="5"/>
         </Grid>
