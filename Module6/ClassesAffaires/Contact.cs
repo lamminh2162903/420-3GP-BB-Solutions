@@ -6,7 +6,7 @@ namespace Contacts
 {
     public class Contact :IXMLSerializable
     {
-        private int numero;
+     //   private int numero;
 
         public String Nom
         {
@@ -20,17 +20,23 @@ namespace Contacts
             get;
         }
 
-        public string NumeroCivique
-        {
-            set
-            {
-                numero = Int32.Parse(value);
-            }
+        //public string NumeroCivique
+        //{
+        //    set
+        //    {
+        //        numero = Int32.Parse(value);
+        //    }
 
-            get
-            {
-                return numero.ToString();
-            }
+        //    get
+        //    {
+        //        return numero.ToString();
+        //    }
+        //}
+
+        public int? NumeroCivique
+        {
+            set;
+            get;
         }
 
         public String Rue
@@ -49,7 +55,8 @@ namespace Contacts
         {
             Nom = "";
             Prenom = "";
-            numero = 0;
+            //            numero = 0;
+            NumeroCivique = null;
             Rue = "";
             Description = "";
         }
@@ -89,7 +96,7 @@ namespace Contacts
             Prenom = elem.GetAttribute("prenom");
 
             XmlElement adresse = elem["adresse"];
-            NumeroCivique = adresse.GetAttribute("numero");
+            NumeroCivique = Int32.Parse(adresse.GetAttribute("numero"));
             Rue = adresse.GetAttribute("rue");
 
             XmlElement description = elem["description"];

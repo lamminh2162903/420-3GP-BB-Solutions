@@ -27,6 +27,9 @@
         <CommandBinding Command="{x:Static local:MainWindow.FermerFichierCmd}"
                         Executed="FermerFichier_Executed"
                         CanExecute="FermerFichier_CanExecute"/>
+        <CommandBinding Command="{x:Static local:MainWindow.NouveauContactCmd}"
+                        Executed="NouveauContact_Executed"
+                        CanExecute="NouveauContact_CanExecute"/>
         <CommandBinding Command="{x:Static local:MainWindow.AllerProchain}"
                         Executed="AllerProchain_Executed"
                         CanExecute="AllerProchain_CanExecute"/>
@@ -155,10 +158,11 @@
                         Margin="0, 10, 0, 0"/>
 
                     <Button Name="BoutonNouveau"
-                        Style="{StaticResource boutonBleu}"
-                        Content="Nouveau"
-                        HorizontalAlignment="Center"
-                        Margin="0, 10, 0, 0"/>
+                            Style="{StaticResource boutonBleu}"
+                            Command="{x:Static local:MainWindow.NouveauContactCmd}"
+                            Content="Nouveau"
+                            HorizontalAlignment="Center"
+                            Margin="0, 10, 0, 0"/>
                 </StackPanel>
             </StackPanel>
 

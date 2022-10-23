@@ -24,6 +24,10 @@ namespace M6_E4
         public static RoutedCommand EnregistrerSousFichierCmd = new RoutedCommand();
         public static RoutedCommand FermerFichierCmd = new RoutedCommand();
 
+        // Les commandes pour la gestion de contacts
+        public static RoutedCommand NouveauContactCmd = new RoutedCommand();
+
+
         // Commandes pour les boutons
         public static RoutedCommand AllerProchain = new RoutedCommand();
         public static RoutedCommand AllerPrecedent = new RoutedCommand();
@@ -35,6 +39,7 @@ namespace M6_E4
         private char DIR_SEPARATOR = Path.DirectorySeparatorChar;
         private int indiceCourant;
         private List<TextBox> champsTexte;
+        private Contact contactVide;
 
         public MainWindow()
         {
@@ -169,6 +174,25 @@ namespace M6_E4
         {
             e.CanExecute = lesContacts.Count > 0;
         }
+
+        // Bouton de création de contact
+        private void NouveauContact_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            contactVide = new Contact();
+            DataContext = contactVide;
+            ActiverChampsTexte(true);
+        }
+
+        private void NouveauContact_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+
+
+
+
+
 
         // Aller au prochain contact
         private void AllerProchain_Executed(object sender, ExecutedRoutedEventArgs e)
