@@ -24,9 +24,6 @@
         <CommandBinding Command="{x:Static local:MainWindow.EnregistrerSousFichierCmd}"
                         Executed="EnregisterSous_Executed"
                         CanExecute="EnregisterSous_CanExecute"/>
-        <CommandBinding Command="{x:Static local:MainWindow.FermerFichierCmd}"
-                        Executed="FermerFichier_Executed"
-                        CanExecute="FermerFichier_CanExecute"/>
         <CommandBinding Command="{x:Static local:MainWindow.AjouterContactCmd}"
                         Executed="AjouterContact_Executed"
                         CanExecute="AjouterContact_CanExecute"/>
@@ -88,9 +85,6 @@
                 <MenuItem Header="Enregistrer sous..."
                           Style="{StaticResource couleurMenu}"
                           Command="{x:Static local:MainWindow.EnregistrerSousFichierCmd}"/>
-                <MenuItem Header="Fermer"
-                          Style="{StaticResource couleurMenu}"
-                          Command="{x:Static local:MainWindow.FermerFichierCmd}"/>
             </MenuItem>
 
             <MenuItem Header="_Aide"

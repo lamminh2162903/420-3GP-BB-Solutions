@@ -57,11 +57,6 @@
                         HorizontalAlignment="Center"
                         Width="150"
                         Margin="0, 10, 0, 0"/>
-                <Button Name="BoutonModifier"
-                        Content="Modifier"
-                        HorizontalAlignment="Center"
-                        Width="150"
-                        Margin="0, 10, 0, 0"/>
                 <Button Name="BoutonRetirer"
                         Content="Retirer"
                         HorizontalAlignment="Center"
@@ -69,6 +64,11 @@
                         Margin="0, 10, 0, 0"/>
                 <Button Name="BoutonNouveau"
                         Content="Nouveau"
+                        HorizontalAlignment="Center"
+                        Width="150"
+                        Margin="0, 10, 0, 0"/>
+                <Button Name="BoutonAnnuler"
+                        Content="Annuler"
                         HorizontalAlignment="Center"
                         Width="150"
                         Margin="0, 10, 0, 0"/>

@@ -22,7 +22,6 @@ namespace M6_E4
         public static RoutedCommand OuvrirFichierCmd = new RoutedCommand();
         public static RoutedCommand EnregistrerFichierCmd = new RoutedCommand();
         public static RoutedCommand EnregistrerSousFichierCmd = new RoutedCommand();
-        public static RoutedCommand FermerFichierCmd = new RoutedCommand();
 
         // Les commandes pour la gestion de contacts
         public static RoutedCommand AjouterContactCmd = new RoutedCommand();
@@ -147,17 +146,6 @@ namespace M6_E4
         }
 
         private void EnregisterSous_CanExecute(object sender, CanExecuteRoutedEventArgs e)
-        {
-            e.CanExecute = lesContacts.Count > 0;
-        }
-
-        // Fermer fichier
-        private void FermerFichier_Executed(object sender, ExecutedRoutedEventArgs e)
-        {
-            lesContacts.Clear();
-        }
-
-        private void FermerFichier_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
             e.CanExecute = lesContacts.Count > 0;
         }
