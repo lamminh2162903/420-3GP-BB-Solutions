@@ -25,7 +25,10 @@ namespace M6_E4
         public static RoutedCommand FermerFichierCmd = new RoutedCommand();
 
         // Les commandes pour la gestion de contacts
+        public static RoutedCommand AjouterContactCmd = new RoutedCommand();
+        public static RoutedCommand RetirerContactCmd = new RoutedCommand();
         public static RoutedCommand NouveauContactCmd = new RoutedCommand();
+        public static RoutedCommand AnnulerNouveau = new RoutedCommand();
 
 
         // Commandes pour les boutons
@@ -33,44 +36,33 @@ namespace M6_E4
         public static RoutedCommand AllerPrecedent = new RoutedCommand();
 
         // Objets pour la gestion des contacts
-        private List<Contact> lesContacts;
+
+        private CollectionContacts lesContacts;  
         private string dossierBase;
         private string pathFichier;
         private char DIR_SEPARATOR = Path.DirectorySeparatorChar;
-        private int indiceCourant;
         private List<TextBox> champsTexte;
-        private Contact contactVide;
+        private Contact? contactVide;
 
         public MainWindow()
         {
+            // Il faut créer les objets avant quand ils sont utilisés dans les méthodes
+            // de vérification des commandes
             champsTexte = new List<TextBox>();
-            lesContacts = new List<Contact>();
-            InitializeComponent();
+
             dossierBase = $"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}{DIR_SEPARATOR}" +
                           $"Fichiers-3GP";
             pathFichier = dossierBase + DIR_SEPARATOR + "contacts.xml";
+            ChargerContacts(pathFichier);
+
+            InitializeComponent();
+
 
             // Ajout des champs texte pour pouvoir les activer et les désactiver
             champsTexte.Add(Nom);
             champsTexte.Add(Prenom);
             champsTexte.Add(NoCivique);
             champsTexte.Add(Rue);
-
-            ChargerContacts(pathFichier);
-            indiceCourant = 0;
-            if (lesContacts.Count > 0)
-            {
-                DataContext = lesContacts[0];
-                ActiverChampsTexte(false);
-            }
-        }
-
-        private void ActiverChampsTexte(bool actif)
-        {
-            foreach(TextBox t in champsTexte)
-            {
-                t.IsReadOnly = ! actif;
-            }
         }
 
         // À propos...
@@ -111,13 +103,15 @@ namespace M6_E4
 
         private void ChargerContacts(string nomFichier)
         {
-            XmlDocument doc = new XmlDocument();
-            doc.Load(nomFichier);
-            XmlNodeList contacts = doc.DocumentElement.GetElementsByTagName("contact");
-            lesContacts = new List<Contact>();
-            foreach (XmlElement c in contacts)
+            lesContacts = new CollectionContacts(pathFichier);
+            if (lesContacts.Courant != null)
             {
-                lesContacts.Add(new Contact(c));
+                DataContext = lesContacts.Courant;
+            }
+            else
+            {
+                contactVide = new Contact();
+                DataContext = contactVide;
             }
         }
 
@@ -134,14 +128,7 @@ namespace M6_E4
 
         private void SauvegarderContacts(string nomFichier)
         {
-            XmlDocument doc = new XmlDocument();
-            XmlElement racine = doc.CreateElement("contact");
-            doc.AppendChild(racine);
-            foreach (Contact c in lesContacts)
-            {
-                racine.AppendChild(c.ToXML(doc));
-            }
-            doc.Save(nomFichier);
+            lesContacts.SauvegarderContacts(nomFichier);
         }
 
         // Enregistrer sous...
@@ -176,11 +163,61 @@ namespace M6_E4
         }
 
         // Bouton de création de contact
+        private void AjouterContact_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            lesContacts.Add(contactVide);
+            contactVide = new Contact();
+            DataContext = lesContacts.Courant;
+        }
+
+        private void AjouterContact_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            bool actif = DataContext == contactVide &&
+                         VerifierChampsVide(false);
+            e.CanExecute = actif;
+
+        }
+
+        private bool VerifierChampsVide(bool vide)
+        {
+            bool reponse = true;
+            foreach (TextBox textBox in champsTexte)
+            {
+                if (vide)
+                {
+                    reponse = reponse && textBox.Text.Equals("");
+                }
+                else
+                {
+                    reponse = reponse && !textBox.Text.Equals("");
+                }
+            }
+            return reponse;
+        }
+
+        private void RetirerContact_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            lesContacts.RetirerCourant();
+            if (lesContacts.Courant != null)
+            {
+                DataContext = lesContacts.Courant;
+            }
+            else
+            {
+                contactVide = new Contact();
+                DataContext = contactVide;
+            }
+        }
+
+        private void RetirerContact_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = lesContacts.Count > 0 && DataContext != contactVide;
+        }
+
         private void NouveauContact_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             contactVide = new Contact();
             DataContext = contactVide;
-            ActiverChampsTexte(true);
         }
 
         private void NouveauContact_CanExecute(object sender, CanExecuteRoutedEventArgs e)
@@ -188,36 +225,50 @@ namespace M6_E4
             e.CanExecute = true;
         }
 
+        private void AnnulerContact_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            if (lesContacts.Count > 0)
+            {
+                DataContext = lesContacts.Courant;
+            }
+            else
+            {
+                contactVide = new Contact();
+                DataContext = contactVide;
+            }
+        }
 
-
-
-
-
+        private void AnnulerContact_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = DataContext == contactVide;
+        }
 
         // Aller au prochain contact
         private void AllerProchain_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            indiceCourant++;
-            DataContext = lesContacts[indiceCourant];
+            lesContacts.AllerAuProchain();
+            DataContext = lesContacts.Courant;
         }
 
         private void AllerProchain_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
-            e.CanExecute = lesContacts.Count > 0 &&
-                indiceCourant < lesContacts.Count - 1;
+            bool actionPossible = DataContext != contactVide &&
+                                  lesContacts.ProchainExiste;
+            e.CanExecute = actionPossible;
         }
 
         // Aller au contact précédent
         private void AllerPrecedent_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            indiceCourant--;
-            DataContext = lesContacts[indiceCourant];
+            lesContacts.AllerAuPrecedent();
+            DataContext = lesContacts.Courant;
         }
 
         private void AllerPrecedent_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
-            e.CanExecute = lesContacts.Count > 0 && 
-                indiceCourant > 0;
+            bool actionPossible = DataContext != contactVide &&
+                                  lesContacts.PrecedentExiste;
+            e.CanExecute = actionPossible;
         }
     }
 }

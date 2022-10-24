@@ -27,9 +27,18 @@
         <CommandBinding Command="{x:Static local:MainWindow.FermerFichierCmd}"
                         Executed="FermerFichier_Executed"
                         CanExecute="FermerFichier_CanExecute"/>
+        <CommandBinding Command="{x:Static local:MainWindow.AjouterContactCmd}"
+                        Executed="AjouterContact_Executed"
+                        CanExecute="AjouterContact_CanExecute"/>
+        <CommandBinding Command="{x:Static local:MainWindow.RetirerContactCmd}"
+                        Executed="RetirerContact_Executed"
+                        CanExecute="RetirerContact_CanExecute"/>
         <CommandBinding Command="{x:Static local:MainWindow.NouveauContactCmd}"
                         Executed="NouveauContact_Executed"
                         CanExecute="NouveauContact_CanExecute"/>
+        <CommandBinding Command="{x:Static local:MainWindow.AnnulerNouveau}"
+                        Executed="AnnulerContact_Executed"
+                        CanExecute="AnnulerContact_CanExecute"/>
         <CommandBinding Command="{x:Static local:MainWindow.AllerProchain}"
                         Executed="AllerProchain_Executed"
                         CanExecute="AllerProchain_CanExecute"/>
@@ -140,27 +149,30 @@
 
                 <StackPanel>
                     <Button Name="BoutonAjouter"
-                        Style="{StaticResource boutonBleu}"
-                        Content="Ajouter"
-                        HorizontalAlignment="Center"
-                        Margin="0, 10, 0, 0"/>
-
-                    <Button Name="BoutonModifier"
-                        Style="{StaticResource boutonBleu}"
-                        Content="Modifier"
-                        HorizontalAlignment="Center"
-                        Margin="0, 10, 0, 0"/>
+                            Style="{StaticResource boutonBleu}"
+                            Command="{x:Static local:MainWindow.AjouterContactCmd}"
+                            Content="Ajouter"
+                            HorizontalAlignment="Center"
+                            Margin="0, 10, 0, 0"/>
 
                     <Button Name="BoutonRetirer"
-                        Style="{StaticResource boutonBleu}"
-                        Content="Retirer"
-                        HorizontalAlignment="Center"
-                        Margin="0, 10, 0, 0"/>
+                            Style="{StaticResource boutonBleu}"
+                            Command="{x:Static local:MainWindow.RetirerContactCmd}"
+                            Content="Retirer"
+                            HorizontalAlignment="Center"
+                            Margin="0, 10, 0, 0"/>
 
                     <Button Name="BoutonNouveau"
                             Style="{StaticResource boutonBleu}"
                             Command="{x:Static local:MainWindow.NouveauContactCmd}"
                             Content="Nouveau"
+                            HorizontalAlignment="Center"
+                            Margin="0, 10, 0, 0"/>
+
+                    <Button Name="BoutonAnnuler"
+                            Style="{StaticResource boutonBleu}"
+                            Command="{x:Static local:MainWindow.AnnulerNouveau}"
+                            Content="Annuler"
                             HorizontalAlignment="Center"
                             Margin="0, 10, 0, 0"/>
                 </StackPanel>
