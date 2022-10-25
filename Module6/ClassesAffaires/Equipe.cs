@@ -2,15 +2,17 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using System.Xml.Linq;
+using Utilitaires;
 
-namespace Exercice4
+namespace Equipes
 {
-    class Equipe
+    public class Equipe : IXMLSerializable
     {
-
         public ObservableCollection<string> Joueurs
         {
             set;
@@ -29,10 +31,8 @@ namespace Exercice4
         {
             Nom = element.GetAttribute("nom");
             Joueurs = new ObservableCollection<string>();
-            LireJoueurs(element);
-
+            FromXML(element);
         }
-
 
         public override string ToString()
         {
@@ -41,11 +41,6 @@ namespace Exercice4
 
         private void LireJoueurs(XmlElement element)
         {
-            XmlNodeList lesJoueurs = element.GetElementsByTagName("Joueur");
-            foreach (XmlElement elementJoueur in lesJoueurs)
-            {
-                Joueurs.Add(elementJoueur.InnerText);
-            }
         }
 
         public void AjouterJoueur(string nom)
@@ -57,17 +52,27 @@ namespace Exercice4
         {
             Joueurs.Remove(nom);
         }
-
-        internal XmlElement ToXML(XmlDocument document)
+        public XmlElement ToXML(XmlDocument doc)
         {
-            XmlElement elementEquipe = document.CreateElement("Equipe");
+            XmlElement elementEquipe = doc.CreateElement("Equipe");
             foreach (string nomJoueur in Joueurs)
             {
-                XmlElement nouveauJoueur = document.CreateElement("Joueur");
+                XmlElement nouveauJoueur = doc.CreateElement("Joueur");
                 nouveauJoueur.InnerText = nomJoueur;
                 elementEquipe.AppendChild(nouveauJoueur);
             }
             return elementEquipe;
+
         }
+
+        public void FromXML(XmlElement elem)
+        {
+            XmlNodeList lesJoueurs = elem.GetElementsByTagName("Joueur");
+            foreach (XmlElement elementJoueur in lesJoueurs)
+            {
+                Joueurs.Add(elementJoueur.InnerText);
+            }
+        }
+
     }
 }

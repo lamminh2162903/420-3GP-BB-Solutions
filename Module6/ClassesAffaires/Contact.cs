@@ -1,13 +1,13 @@
 ﻿using Utilitaires;
 using System.Text;
 using System.Xml;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace Contacts
 {
     public class Contact :IXMLSerializable
     {
-     //   private int numero;
-
         public String Nom
         {
             set;
@@ -20,32 +20,19 @@ namespace Contacts
             get;
         }
 
-        //public string NumeroCivique
-        //{
-        //    set
-        //    {
-        //        numero = Int32.Parse(value);
-        //    }
-
-        //    get
-        //    {
-        //        return numero.ToString();
-        //    }
-        //}
-
         public int? NumeroCivique
         {
             set;
             get;
         }
 
-        public String Rue
+        public string Rue
         {
             set;
             get;
         }
 
-        public String Description
+        public string Description
         {
             set;
             get;
@@ -65,7 +52,8 @@ namespace Contacts
         {
             FromXML(elementContact);
         }
-        
+
+
         public override string ToString()
         {
             StringBuilder builder = new StringBuilder();

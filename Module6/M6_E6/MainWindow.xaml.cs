@@ -1,19 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Xml;
+using Equipes;
 
 namespace Exercice4
 {
@@ -23,26 +14,26 @@ namespace Exercice4
     public partial class MainWindow : Window
     {
         private ObservableCollection<Equipe> lesEquipes;
+        private char DIR_SEPARATOR = Path.DirectorySeparatorChar;
+        private string pathFichier;
 
         public MainWindow()
         {
             InitializeComponent();
             lesEquipes = new ObservableCollection<Equipe>();
-
+            pathFichier = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) +
+                          DIR_SEPARATOR + "Fichiers-3GP" + DIR_SEPARATOR + "equipes.xml"; 
             ChargerFichierXml();
-
             ComboBoxEquipes.ItemsSource = lesEquipes;
         }
 
         private void ChargerFichierXml()
         {
             XmlDocument document = new XmlDocument();
-            string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/equipes.xml";
-            document.Load(path);
+            document.Load(pathFichier);
             XmlElement racine = document.DocumentElement;
 
-
-            XmlElement unNoeud = racine.GetElementsByTagName("Equipes")[0] as XmlElement;
+            XmlElement unNoeud = racine["Equipes"];
             XmlNodeList lesEquipesXML = unNoeud.GetElementsByTagName("Equipe");
 
             foreach (XmlElement unElement in lesEquipesXML)
@@ -75,10 +66,10 @@ namespace Exercice4
             equipe.RetirerJoueur(nomJoueur);
             SauvegarderXML();
         }
+
         private void SauvegarderXML()
         {
             XmlDocument document = new XmlDocument();
-            string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/equipes.xml";
             XmlElement racine = document.CreateElement("Ligue");
             document.AppendChild(racine);
 
@@ -90,9 +81,7 @@ namespace Exercice4
                 XmlElement element= uneEquipe.ToXML(document);
                 elementEquipe.AppendChild(element);
             }
-            document.Save(path);
+            document.Save(pathFichier);
         }
-
-
     }
 }
