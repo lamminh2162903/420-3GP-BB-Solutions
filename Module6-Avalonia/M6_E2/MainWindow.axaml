@@ -14,6 +14,7 @@
             https://docs.avaloniaui.net/docs/styling/styles
     -->
 
+    <!-- Ici, ce n'est qu'un exemple d'application d'un style -->
     <Window.Styles>
         <Style Selector="Button.blue">
             <Setter Property="Background" Value="Blue" />
