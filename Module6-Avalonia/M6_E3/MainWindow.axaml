@@ -1,0 +1,174 @@
+<Window xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Height="550"
+    Width="600"
+    x:Class="M6_E3.MainWindow"
+    Title="Carnet adresse"
+    Background="AliceBlue">
+
+
+    <!-- Lien pour les styles avec Avlonia:
+                https://docs.avaloniaui.net/docs/styling/styles
+        -->
+
+    <!-- Ici, ce n'est qu'un exemple d'application d'un style -->
+    <Window.Styles>
+        <Style Selector="Button.blue">
+            <Setter Property="Background" Value="Blue" />
+            <Setter Property="Foreground" Value="White" />
+        </Style>
+
+        <Style Selector="Menu.blue">
+            <Setter Property="Background" Value="AliceBlue" />
+        </Style>
+        <Style Selector="MenuItem.blue">
+            <Setter Property="Background" Value="AliceBlue" />
+        </Style>
+
+    </Window.Styles>
+
+
+    <DockPanel>
+        <Menu DockPanel.Dock="Top"
+            Classes="blue">
+            <MenuItem Header="_Fichier"
+                Classes="blue">
+                <MenuItem Header="Ouvrir"
+                    InputGesture="Ctrl+O"
+                    Classes="blue" />
+                <MenuItem Header="Enregistrer"
+                    InputGesture="Ctrl+S"
+                    Classes="blue" />
+                <MenuItem Header="Enregistrer sous..."
+                    Classes="blue" />
+            </MenuItem>
+
+            <MenuItem Header="_Aide"
+                Classes="blue">
+                <MenuItem Header="À propos..."
+                    Classes="blue" />
+            </MenuItem>
+        </Menu>
+
+
+        <Grid DockPanel.Dock="Bottom">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="300" />
+                <ColumnDefinition Width="300" />
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="250" />
+                <RowDefinition Height="200" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="0"
+                Grid.Column="0">
+                <WrapPanel Margin="5">
+                    <TextBlock Text="Nom:"
+                        Width="100" />
+                    <TextBox Name="Nom"
+                        Width="150" />
+                </WrapPanel>
+
+                <WrapPanel Margin="5">
+                    <TextBlock Text="Prénom:"
+                        Width="100" />
+                    <TextBox Name="Prenom"
+                        Width="150" />
+                </WrapPanel>
+
+                <WrapPanel Margin="5">
+                    <TextBlock Text="No. Civique:"
+                        Width="100" />
+                    <TextBox Name="NoCivique"
+                        Width="150" />
+                </WrapPanel>
+
+                <WrapPanel Margin="5">
+                    <TextBlock Text="Rue:"
+                        Width="100" />
+                    <TextBox Name="Rue"
+                        Width="150" />
+                </WrapPanel>
+            </StackPanel>
+
+            <StackPanel Grid.Row="1"
+                Grid.Column="0">
+                <Button Classes="blue"
+                    Name="BoutonAjouter"
+                    Content="Ajouter"
+                    HorizontalAlignment="Center"
+                    Width="150"
+                    Margin="60, 10, 0, 0" />
+                <Button Classes="blue"
+                    Name="BoutonRetirer"
+                    Content="Retirer"
+                    HorizontalAlignment="Center"
+                    Width="150"
+                    Margin="60, 10, 0, 0" />
+                <Button Classes="blue"
+                    Name="BoutonNouveau"
+                    Content="Nouveau"
+                    HorizontalAlignment="Center"
+                    Width="150"
+                    Margin="60, 10, 0, 0" />
+                <Button Classes="blue"
+                    Name="BoutonAnnuler"
+                    Content="Annuler"
+                    HorizontalAlignment="Center"
+                    Width="150"
+                    Margin="60, 10, 0, 0" />
+            </StackPanel>
+
+            <DockPanel Grid.Row="0"
+                Grid.Column="1">
+                <Border DockPanel.Dock="Top"
+                    Margin="0,20,0,0"
+                    Width="150"
+                    Height="150"
+                    BorderThickness="2"
+                    BorderBrush="Black">
+
+                    <Image Source="assets/NoImage.png"
+                        VerticalAlignment="Center" />
+                </Border>
+
+                <Button Name="BoutonChangerPhoto"
+                    Classes="blue"
+                    Content="Changer photo"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Top"
+                    Width="150"
+                    Margin="0, 10, 0, 0"
+                    DockPanel.Dock="Bottom" />
+
+            </DockPanel>
+
+            <!-- Boutons du bas -->
+            <Button
+                Name="BoutonPrecedent"
+                Classes="blue"
+                Content="Précédent"
+                Grid.Row="2"
+                Grid.Column="0"
+                Width="150"
+                Margin="65, 5, 5, 5"
+                HorizontalAlignment="Center" />
+
+            <Button Name="BoutonProchain"
+                Classes="blue"
+                Content="Prochain"
+                Grid.Row="2"
+                Grid.Column="1"
+                Width="150"
+                Margin="5, 5, 5, 5"
+                HorizontalAlignment="Center" />
+
+        </Grid>
+    </DockPanel>
+</Window>
