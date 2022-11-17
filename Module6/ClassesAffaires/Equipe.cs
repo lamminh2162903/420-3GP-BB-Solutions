@@ -25,6 +25,11 @@ namespace Equipes
             get;
         }
 
+        public Equipe(string nom)
+        {
+            Nom = nom;
+            Joueurs = new ObservableCollection<string>();
+        }
 
 
         public Equipe(XmlElement element)
@@ -55,6 +60,7 @@ namespace Equipes
         public XmlElement ToXML(XmlDocument doc)
         {
             XmlElement elementEquipe = doc.CreateElement("Equipe");
+            elementEquipe.SetAttribute("nom", Nom);
             foreach (string nomJoueur in Joueurs)
             {
                 XmlElement nouveauJoueur = doc.CreateElement("Joueur");

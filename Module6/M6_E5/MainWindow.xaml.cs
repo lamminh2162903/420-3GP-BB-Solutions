@@ -155,7 +155,7 @@ namespace M6_E5
         {
             lesContacts.Add(contactVide);
             contactVide = new Contact();
-            DataContext = lesContacts.Courant;
+            DataContext = contactVide;
         }
 
         private void AjouterContact_CanExecute(object sender, CanExecuteRoutedEventArgs e)

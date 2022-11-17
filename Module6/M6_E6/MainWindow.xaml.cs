@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Xml;
 using Equipes;
 
@@ -17,6 +18,8 @@ namespace Exercice4
         private char DIR_SEPARATOR = Path.DirectorySeparatorChar;
         private string pathFichier;
 
+        public static RoutedCommand AjouterEquipeCmd = new RoutedCommand();
+
         public MainWindow()
         {
             InitializeComponent();
@@ -30,7 +33,7 @@ namespace Exercice4
         private void ChargerFichierXml()
         {
             XmlDocument document = new XmlDocument();
-            document.Load(pathFichier);
+                document.Load(pathFichier);
             XmlElement racine = document.DocumentElement;
 
             XmlElement unNoeud = racine["Equipes"];
@@ -82,6 +85,18 @@ namespace Exercice4
                 elementEquipe.AppendChild(element);
             }
             document.Save(pathFichier);
+        }
+
+        private void AjouterEquipe_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = InputNouvelleEquipe.Text != "";
+
+        }
+
+        private void AjouterEquipe_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            Equipe nouvelleEquipe = new Equipe(InputNouvelleEquipe.Text);
+            lesEquipes.Add(nouvelleEquipe);
         }
     }
 }

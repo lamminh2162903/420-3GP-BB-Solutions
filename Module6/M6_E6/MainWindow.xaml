@@ -6,6 +6,15 @@
         xmlns:local="clr-namespace:Exercice4"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+
+    <Window.CommandBindings>
+        <CommandBinding Command="{x:Static local:MainWindow.AjouterEquipeCmd}"
+                        CanExecute="AjouterEquipe_CanExecute"
+                        Executed="AjouterEquipe_Executed"/>
+
+    </Window.CommandBindings>
+    
+    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="400"/>
@@ -32,6 +41,7 @@
 
             <Button x:Name="AjouterEquipe"
                     Content="Ajouter équipe"
+                    Command="{x:Static local:MainWindow.AjouterEquipeCmd}"
                     Width="150"
                     HorizontalAlignment="Left"
                     Margin="105, 5, 0, 0"/>

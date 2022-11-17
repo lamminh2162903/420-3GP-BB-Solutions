@@ -8,17 +8,15 @@ namespace Contacts
     public class CollectionContacts :IEnumerable<Contact>
     {
 
-        private List<Contact> lesContacts;
-        private int indiceCourant;
-//        private string pathFichier;
-
+        private List<Contact> _lesContacts;
+        private int _indiceCourant;
         public Contact? Courant
         {
             get
             {
-                if (indiceCourant != -1)
+                if (_lesContacts.Count > 0)
                 {
-                    return lesContacts[indiceCourant];
+                    return _lesContacts[_indiceCourant];
                 }
                 else
                 {
@@ -31,7 +29,7 @@ namespace Contacts
         {
             get
             {
-                return indiceCourant > 0;
+                return _indiceCourant > 0;
             }
         }
 
@@ -39,7 +37,7 @@ namespace Contacts
         {
             get
             {
-                return indiceCourant != -1 && indiceCourant < lesContacts.Count - 1;
+                return _indiceCourant < _lesContacts.Count - 1;
             }
          }
 
@@ -47,7 +45,7 @@ namespace Contacts
         {
             get
             {
-                return lesContacts.Count;
+                return _lesContacts.Count;
             }
         }
 
@@ -57,39 +55,30 @@ namespace Contacts
             doc.Load(nomFichier);
             //pathFichier = nomFichier;
             XmlNodeList contacts = doc.DocumentElement.GetElementsByTagName("contact");
-            lesContacts = new List<Contact>();
+            _lesContacts = new List<Contact>();
             foreach (XmlElement c in contacts)
             {
-                lesContacts.Add(new Contact(c));
+                _lesContacts.Add(new Contact(c));
             }
-            if (lesContacts.Count > 0)
-            {
-                indiceCourant = 0;
-            }
-            else
-            {
-                indiceCourant = -1;
-            }
+            _indiceCourant = 0;
         }
 
         public void Add(Contact c)
         {
-            lesContacts.Add(c);
-            indiceCourant = lesContacts.Count - 1;
+            _lesContacts.Add(c);
         }
 
         public void Clear()
         {
-            lesContacts.Clear();
-            indiceCourant--;
-//            pathFichier = "";
+            _lesContacts.Clear();
+            _indiceCourant = 0;
         }
 
         public void AllerAuProchain()
         {
             if (ProchainExiste)
             {
-                indiceCourant++;
+                _indiceCourant++;
             }
 
         }
@@ -98,20 +87,20 @@ namespace Contacts
         {
             if (PrecedentExiste)
             {
-                indiceCourant--;
+                _indiceCourant--;
             }
         }
 
         public void RetirerCourant()
         {
             // L'indice courant doit être dans la liste
-            if (indiceCourant >= 0 && indiceCourant < lesContacts.Count)
+            if (_indiceCourant >= 0 && _indiceCourant < _lesContacts.Count)
             {
-                lesContacts.RemoveAt(indiceCourant);
+                _lesContacts.RemoveAt(_indiceCourant);
                 // On replace l'indice s'il est maintenant à l'extérieur de la liste
-                if (indiceCourant > lesContacts.Count - 1)
+                if (_indiceCourant > _lesContacts.Count - 1)
                 {
-                    indiceCourant = lesContacts.Count - 1;
+                    _indiceCourant = _lesContacts.Count - 1;
                 }
             }
         }
@@ -125,19 +114,12 @@ namespace Contacts
             XmlDocument doc = new XmlDocument();
             doc.Load(nomFichier);
             XmlNodeList contacts = doc.DocumentElement.GetElementsByTagName("contact");
-            lesContacts = new List<Contact>();
+            _lesContacts = new List<Contact>();
             foreach (XmlElement c in contacts)
             {
-                lesContacts.Add(new Contact(c));
+                _lesContacts.Add(new Contact(c));
             }
-            if (lesContacts.Count > 0)
-            {
-                indiceCourant = 0;
-            }
-            else
-            {
-                indiceCourant = -1;
-            }
+            _indiceCourant = 0;
         }
 
         public void SauvegarderContacts(string nomFichier)
@@ -146,7 +128,7 @@ namespace Contacts
             XmlDocument doc = new XmlDocument();
             XmlElement racine = doc.CreateElement("contact");
             doc.AppendChild(racine);
-            foreach (Contact c in lesContacts)
+            foreach (Contact c in _lesContacts)
             {
                 racine.AppendChild(c.ToXML(doc));
             }
@@ -158,12 +140,12 @@ namespace Contacts
         // On utilise l'énumérateur de la liste. Pour que les foreach fonctionnent
         public IEnumerator<Contact> GetEnumerator()
         {
-            return lesContacts.GetEnumerator();
+            return _lesContacts.GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return lesContacts.GetEnumerator();
+            return _lesContacts.GetEnumerator();
         }
     }
 }
