@@ -1,6 +1,4 @@
 ﻿using System.Collections;
-using System.Diagnostics;
-using System.Security.Cryptography;
 using System.Xml;
 
 namespace Contacts
