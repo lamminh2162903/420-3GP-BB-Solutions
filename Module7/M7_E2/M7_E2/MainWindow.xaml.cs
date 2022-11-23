@@ -44,18 +44,19 @@ namespace M7_E2
         private List<TextBox> champsTexte;
         //private Contact? contactVide;
 
+        private ViewModelContacts _viewModel;
+
         public MainWindow()
         {
-            // Il faut créer les objets avant quand ils sont utilisés dans les méthodes
-            // de vérification des commandes
             champsTexte = new List<TextBox>();
-
+            _viewModel = new ViewModelContacts();
             dossierBase = $"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}{DIR_SEPARATOR}" +
                           $"Fichiers-3GP";
             pathFichier = dossierBase + DIR_SEPARATOR + "contacts.xml";
-            ChargerContacts(pathFichier);
+            _viewModel.ChargerContacts(pathFichier);
 
             InitializeComponent();
+            DataContext = _viewModel;
 
 
             // Ajout des champs texte pour pouvoir les activer et les désactiver
@@ -68,7 +69,7 @@ namespace M7_E2
         // À propos...
         private void APropos_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            MessageBox.Show("Carnet adresses\n Version 0.9");
+            MessageBox.Show("Carnet adresses\n Version 0.95");
         }
 
         private void APropos_CanExecute(object sender, CanExecuteRoutedEventArgs e)
@@ -97,7 +98,7 @@ namespace M7_E2
             if (resultat.HasValue && resultat.Value)
             {
                 pathFichier = openFileDialog.FileName;
-                ChargerContacts(pathFichier);
+                _viewModel.ChargerContacts(pathFichier);
             }
         }
 
