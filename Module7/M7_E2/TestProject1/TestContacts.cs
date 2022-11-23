@@ -1,6 +1,6 @@
-namespace TestProject1
+namespace Tests
 {
-    public class Tests
+    public class TestsContacts
     {
         [SetUp]
         public void Setup()
