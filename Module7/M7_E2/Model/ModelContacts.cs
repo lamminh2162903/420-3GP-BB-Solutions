@@ -7,59 +7,16 @@ namespace Model
 {
     public class ModelContacts : IEnumerable<Contact>
     {
-        private List<Contact> _lesContacts;
-        //private int _indiceCourant;
-        //public Contact? Courant
-        //{
-        //    get
-        //    {
-        //        if (_lesContacts.Count > 0)
-        //        {
-        //            return _lesContacts[_indiceCourant];
-        //        }
-        //        else
-        //        {
-        //            return null;
-        //        }
-        //    }
-        //}
-
-        //public bool PrecedentExiste
-        //{
-        //    get
-        //    {
-        //        return _indiceCourant > 0;
-        //    }
-        //}
-
-        //public bool ProchainExiste
-        //{
-        //    get
-        //    {
-        //        return _indiceCourant < _lesContacts.Count - 1;
-        //    }
-        //}
-
-        //public int Count
-        //{
-        //    get
-        //    {
-        //        return _lesContacts.Count;
-        //    }
-        //}
+        public List<Contact> LesContacts
+        {
+            private set;
+            get;
+        }
+ 
 
         public ModelContacts()
         {
-            //XmlDocument doc = new XmlDocument();
-            //doc.Load(nomFichier);
-            ////pathFichier = nomFichier;
-            //XmlNodeList contacts = doc.DocumentElement.GetElementsByTagName("contact");
-            //_lesContacts = new List<Contact>();
-            //foreach (XmlElement c in contacts)
-            //{
-            //    _lesContacts.Add(new Contact(c));
-            //}
-            //_indiceCourant = 0;
+            LesContacts = new List<Contact>();
         }
 
         public void ChargerContacts(string nomFichier)
@@ -72,41 +29,22 @@ namespace Model
             XmlDocument doc = new XmlDocument();
             doc.Load(nomFichier);
             XmlNodeList contacts = doc.DocumentElement.GetElementsByTagName("contact");
-            _lesContacts = new List<Contact>();
+            LesContacts = new List<Contact>();
 
             foreach (XmlElement c in contacts)
             {
-                _lesContacts.Add(new Contact(c));
+                LesContacts.Add(new Contact(c));
             }
-//            _indiceCourant = 0;
         }
 
         public void Add(Contact c)
         {
-            _lesContacts.Add(c);
+            LesContacts.Add(c);
         }
 
         public void Clear()
         {
-            _lesContacts.Clear();
-//            _indiceCourant = 0;
-        }
-
-        public void AllerAuProchain()
-        {
-            //if (ProchainExiste)
-            //{
-            //    _indiceCourant++;
-            //}
-
-        }
-
-        public void AllerAuPrecedent()
-        {
-            //if (PrecedentExiste)
-            //{
-            //    _indiceCourant--;
-            //}
+            LesContacts.Clear();
         }
 
         public void RetirerCourant()
@@ -125,11 +63,10 @@ namespace Model
 
         public void SauvegarderContacts(string nomFichier)
         {
-            //pathFichier = nomFichier;
             XmlDocument doc = new XmlDocument();
             XmlElement racine = doc.CreateElement("contact");
             doc.AppendChild(racine);
-            foreach (Contact c in _lesContacts)
+            foreach (Contact c in LesContacts)
             {
                 racine.AppendChild(c.ToXML(doc));
             }
@@ -139,12 +76,12 @@ namespace Model
         // On utilise l'énumérateur de la liste. Pour que les foreach fonctionnent
         public IEnumerator<Contact> GetEnumerator()
         {
-            return _lesContacts.GetEnumerator();
+            return LesContacts.GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return _lesContacts.GetEnumerator();
+            return LesContacts.GetEnumerator();
         }
     }
 }

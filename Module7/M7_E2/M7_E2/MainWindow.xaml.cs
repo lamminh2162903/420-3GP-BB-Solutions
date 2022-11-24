@@ -102,37 +102,23 @@ namespace M7_E2
             }
         }
 
-        private void ChargerContacts(string nomFichier)
-        {
-            //lesContacts = new ModelContacts(pathFichier);
-            //if (lesContacts.Courant != null)
-            //{
-            //    DataContext = lesContacts.Courant;
-            //}
-            //else
-            //{
-            //    contactVide = new Contact();
-            //    DataContext = contactVide;
-            //}
-        }
-
         // Enregistrer fichier
-        private void EnregisterFichier_Executed(object sender, ExecutedRoutedEventArgs e)
-        {
-            SauvegarderContacts(pathFichier);
-        }
-
         private void EnregisterFichier_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
-            //e.CanExecute = lesContacts.Count > 0;
+            e.CanExecute = _viewModel.PeutSauvegarder;
         }
 
-        private void SauvegarderContacts(string nomFichier)
+        private void EnregisterFichier_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            //lesContacts.SauvegarderContacts(nomFichier);
+            _viewModel.SauvegarderContacts();
         }
 
         // Enregistrer sous...
+        private void EnregisterSous_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = _viewModel.PeutSauvegarderSous;
+        }
+
         private void EnregisterSous_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
@@ -142,14 +128,8 @@ namespace M7_E2
             if (resultat.HasValue && resultat.Value)
             {
                 pathFichier = saveFileDialog.FileName;
-                SauvegarderContacts(pathFichier);
+                _viewModel.SauvegarderSousContacts(pathFichier);
             }
-
-        }
-
-        private void EnregisterSous_CanExecute(object sender, CanExecuteRoutedEventArgs e)
-        {
-            //e.CanExecute = lesContacts.Count > 0;
         }
 
         // Bouton de création de contact
@@ -234,31 +214,25 @@ namespace M7_E2
         }
 
         // Aller au prochain contact
-        private void AllerProchain_Executed(object sender, ExecutedRoutedEventArgs e)
-        {
-            //lesContacts.AllerAuProchain();
-            //DataContext = lesContacts.Courant;
-        }
-
         private void AllerProchain_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
-            //bool actionPossible = DataContext != contactVide &&
-            //                      lesContacts.ProchainExiste;
-            //e.CanExecute = actionPossible;
+            e.CanExecute = _viewModel.PeutAllerAuProchain();
+        }
+
+        private void AllerProchain_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            _viewModel.AllerAuProchain();
         }
 
         // Aller au contact précédent
-        private void AllerPrecedent_Executed(object sender, ExecutedRoutedEventArgs e)
-        {
-            //lesContacts.AllerAuPrecedent();
-            //DataContext = lesContacts.Courant;
-        }
-
         private void AllerPrecedent_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
-            //bool actionPossible = DataContext != contactVide &&
-            //                      lesContacts.PrecedentExiste;
-            //e.CanExecute = actionPossible;
+            e.CanExecute = _viewModel.PeutAllerAuPrecedent();
+        }
+
+        private void AllerPrecedent_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            _viewModel.AllerAuPrecedent();
         }
     }
 }
