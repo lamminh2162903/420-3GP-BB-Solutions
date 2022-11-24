@@ -46,7 +46,9 @@ namespace ViewModel
         public bool ProchainExiste => _indiceCourant < _model.LesContacts.Count - 1;
         public bool PeutSauvegarder => _model.LesContacts.Count > 0 && _fichierActif != string.Empty;
         public bool PeutSauvegarderSous => _model.LesContacts.Count > 0;
-        public bool PeutAnnuler => _nouveauContact == ContactCourant;
+        public bool ContactEnConstruction => _nouveauContact == ContactCourant;
+        public bool PeutRetirerContact => !ContactEnConstruction && _model.LesContacts.Count > 0;
+        public bool PeutAnnulerNouveauContact => ContactEnConstruction && _model.LesContacts.Count > 0;
 
         public ViewModelContacts()
         {
@@ -122,9 +124,45 @@ namespace ViewModel
             OnPropertyChanged();
         }
 
-        public void NouveauContactEnConstruction()
+        public void AnnulerNouveauContact()
         {
+            if (_model.LesContacts.Count > 0)
+            {
+                ContactCourant = _model.LesContacts[_indiceCourant];
+                OnPropertyChanged();
+            }
+        }
+
+        public void AjouterContactConstruction()
+        {
+            _model.AjouterContact(_nouveauContact);
+            _nouveauContact = null;
+            _indiceCourant = _model.LesContacts.Count - 1;
             ContactCourant = _model.LesContacts[_indiceCourant];
+            OnPropertyChanged();
+        }
+
+        public void RetirerContactCourant()
+        {
+            _model.RetirerContact(ContactCourant);
+            if (_model.LesContacts.Count == 0)
+            {
+                _nouveauContact = new Contact();
+                ContactCourant = _nouveauContact;
+            }
+
+            else if (_indiceCourant < _model.LesContacts.Count)
+            {
+                // On reste sur le même indice,
+                // mais le contact courant change
+                ContactCourant = _model.LesContacts[_indiceCourant];
+            }
+            else
+            {
+                // Revient sur le dernier élément
+                _indiceCourant--;
+                ContactCourant = _model.LesContacts[_indiceCourant];
+            }
             OnPropertyChanged();
         }
     }

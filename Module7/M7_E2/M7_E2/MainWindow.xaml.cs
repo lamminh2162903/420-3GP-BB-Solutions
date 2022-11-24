@@ -133,55 +133,41 @@ namespace M7_E2
         }
 
         // Bouton de création de contact
-        private void AjouterContact_Executed(object sender, ExecutedRoutedEventArgs e)
-        {
-            //lesContacts.Add(contactVide);
-            //contactVide = new Contact();
-            //DataContext = contactVide;
-        }
-
         private void AjouterContact_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
-            //bool actif = DataContext == contactVide &&
-            //             VerifierChampsVide(false);
-            //e.CanExecute = actif;
+            e.CanExecute = _viewModel.ContactEnConstruction && ChampsTexteComplets();
 
         }
 
-        private bool VerifierChampsVide(bool vide)
+        private void AjouterContact_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            _viewModel.AjouterContactConstruction();
+
+        }
+
+
+        private bool ChampsTexteComplets()
         {
             bool reponse = true;
             foreach (TextBox textBox in champsTexte)
             {
-                if (vide)
+                if (textBox.Text.Equals(string.Empty))
                 {
-                    reponse = reponse && textBox.Text.Equals("");
-                }
-                else
-                {
-                    reponse = reponse && !textBox.Text.Equals("");
+                    reponse = false;
+                    break;
                 }
             }
             return reponse;
         }
 
-        private void RetirerContact_Executed(object sender, ExecutedRoutedEventArgs e)
-        {
-            //lesContacts.RetirerCourant();
-            //if (lesContacts.Courant != null)
-            //{
-            //    DataContext = lesContacts.Courant;
-            //}
-            //else
-            //{
-            //    contactVide = new Contact();
-            //    DataContext = contactVide;
-            //}
-        }
-
         private void RetirerContact_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
-            //e.CanExecute = lesContacts.Count > 0 && DataContext != contactVide;
+            e.CanExecute = _viewModel.PeutRetirerContact;
+        }
+
+        private void RetirerContact_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            _viewModel.RetirerContactCourant();
         }
 
         private void NouveauContact_CanExecute(object sender, CanExecuteRoutedEventArgs e)
@@ -196,7 +182,7 @@ namespace M7_E2
 
         private void AnnulerContact_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
-            e.CanExecute = _viewModel.PeutAnnuler;
+            e.CanExecute = _viewModel.PeutAnnulerNouveauContact;
         }
 
         private void AnnulerContact_Executed(object sender, ExecutedRoutedEventArgs e)

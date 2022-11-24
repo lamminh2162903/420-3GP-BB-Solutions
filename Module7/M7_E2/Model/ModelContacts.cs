@@ -47,19 +47,6 @@ namespace Model
             LesContacts.Clear();
         }
 
-        public void RetirerCourant()
-        {
-            // L'indice courant doit être dans la liste
-            //if (_indiceCourant >= 0 && _indiceCourant < _lesContacts.Count)
-            //{
-            //    _lesContacts.RemoveAt(_indiceCourant);
-            //    // On replace l'indice s'il est maintenant à l'extérieur de la liste
-            //    if (_indiceCourant > _lesContacts.Count - 1)
-            //    {
-            //        _indiceCourant = _lesContacts.Count - 1;
-            //    }
-            //}
-        }
 
         public void SauvegarderContacts(string nomFichier)
         {
@@ -82,6 +69,16 @@ namespace Model
         IEnumerator IEnumerable.GetEnumerator()
         {
             return LesContacts.GetEnumerator();
+        }
+
+        public void AjouterContact(Contact nouveauContact)
+        {
+            LesContacts.Add(nouveauContact);
+        }
+
+        public void RetirerContact(Contact contactCourant)
+        {
+            LesContacts.Remove(contactCourant);
         }
     }
 }
