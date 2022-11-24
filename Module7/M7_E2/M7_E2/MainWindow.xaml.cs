@@ -184,34 +184,26 @@ namespace M7_E2
             //e.CanExecute = lesContacts.Count > 0 && DataContext != contactVide;
         }
 
-        private void NouveauContact_Executed(object sender, ExecutedRoutedEventArgs e)
-        {
-            //contactVide = new Contact();
-            //DataContext = contactVide;
-        }
-
         private void NouveauContact_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
             e.CanExecute = true;
         }
 
-        private void AnnulerContact_Executed(object sender, ExecutedRoutedEventArgs e)
+        private void NouveauContact_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            //if (lesContacts.Count > 0)
-            //{
-            //    DataContext = lesContacts.Courant;
-            //}
-            //else
-            //{
-            //    contactVide = new Contact();
-            //    DataContext = contactVide;
-            //}
+            _viewModel.NouveauContact();
         }
 
         private void AnnulerContact_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
-            //e.CanExecute = DataContext == contactVide;
+            e.CanExecute = _viewModel.PeutAnnuler;
         }
+
+        private void AnnulerContact_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            _viewModel.AnnulerNouveauContact();
+        }
+
 
         // Aller au prochain contact
         private void AllerProchain_CanExecute(object sender, CanExecuteRoutedEventArgs e)

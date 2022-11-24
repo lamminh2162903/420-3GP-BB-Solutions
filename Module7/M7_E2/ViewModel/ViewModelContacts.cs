@@ -46,6 +46,7 @@ namespace ViewModel
         public bool ProchainExiste => _indiceCourant < _model.LesContacts.Count - 1;
         public bool PeutSauvegarder => _model.LesContacts.Count > 0 && _fichierActif != string.Empty;
         public bool PeutSauvegarderSous => _model.LesContacts.Count > 0;
+        public bool PeutAnnuler => _nouveauContact == ContactCourant;
 
         public ViewModelContacts()
         {
@@ -112,6 +113,19 @@ namespace ViewModel
             {
                 _model.SauvegarderContacts(_fichierActif);
             }
+        }
+
+        public void NouveauContact()
+        {
+            _nouveauContact = new Contact();
+            ContactCourant = _nouveauContact;
+            OnPropertyChanged();
+        }
+
+        public void NouveauContactEnConstruction()
+        {
+            ContactCourant = _model.LesContacts[_indiceCourant];
+            OnPropertyChanged();
         }
     }
 }
