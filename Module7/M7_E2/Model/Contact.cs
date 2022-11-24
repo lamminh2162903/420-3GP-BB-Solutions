@@ -35,14 +35,22 @@ namespace Model
             get;
         }
 
+        // Le fichier est dans le dossier Images du dossier de base de la classe
+        // Utilitaires.
+        public string? FichierPhoto
+        {
+            private set;
+            get;
+        }
+
         public Contact()
         {
             Nom = "";
             Prenom = "";
-            //            numero = 0;
             NumeroCivique = null;
             Rue = "";
             Description = "";
+            ChangerImage("NoImage.png");
         }
 
         public Contact(XmlElement elementContact)
@@ -50,6 +58,17 @@ namespace Model
             FromXML(elementContact);
         }
 
+        public void ChangerImage(string pathFichier)
+        {
+            string nomFichier = Path.GetFileName(pathFichier);
+            string pathDestination = Utilitaires.DOSSIER_BASE + "Images" + Utilitaires.DIR_SEPARATOR + nomFichier;
+
+            if (!File.Exists(pathDestination))
+            {
+                File.Copy(pathFichier, pathDestination);
+            }
+            FichierPhoto = pathDestination;
+        }
 
         public override string ToString()
         {
@@ -79,6 +98,8 @@ namespace Model
         {
             Nom = elem.GetAttribute("nom");
             Prenom = elem.GetAttribute("prenom");
+            string photo = elem.GetAttribute("photo");
+            ChangerImage(photo);
 
             XmlElement adresse = elem["adresse"];
             NumeroCivique = Int32.Parse(adresse.GetAttribute("numero"));
@@ -98,6 +119,7 @@ namespace Model
             XmlElement elementContact = doc.CreateElement("contact");
             elementContact.SetAttribute("nom", Nom);
             elementContact.SetAttribute("prenom", Prenom);
+            elementContact.SetAttribute("photo", Path.GetFileName(FichierPhoto));
 
             XmlElement elementAdresse = doc.CreateElement("adresse");
             elementAdresse.SetAttribute("numero", NumeroCivique.ToString());

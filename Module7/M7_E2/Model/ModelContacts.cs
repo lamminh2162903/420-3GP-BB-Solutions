@@ -12,7 +12,6 @@ namespace Model
             private set;
             get;
         }
- 
 
         public ModelContacts()
         {

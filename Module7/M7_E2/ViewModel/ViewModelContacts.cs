@@ -41,7 +41,10 @@ namespace ViewModel
             get => ContactCourant.Rue;
             set => ContactCourant.Rue = value;
         }
+        public string Photo => ContactCourant.FichierPhoto;
 
+
+        public string DossierBase => Utilitaires.DOSSIER_BASE;
         public bool PrecedentExiste => _indiceCourant > 0;
         public bool ProchainExiste => _indiceCourant < _model.LesContacts.Count - 1;
         public bool PeutSauvegarder => _model.LesContacts.Count > 0 && _fichierActif != string.Empty;
@@ -50,8 +53,10 @@ namespace ViewModel
         public bool PeutRetirerContact => !ContactEnConstruction && _model.LesContacts.Count > 0;
         public bool PeutAnnulerNouveauContact => ContactEnConstruction && _model.LesContacts.Count > 0;
 
+
         public ViewModelContacts()
         {
+            
             _model = new ModelContacts();
             _indiceCourant = 0;
             _fichierActif = string.Empty;
@@ -164,6 +169,12 @@ namespace ViewModel
                 ContactCourant = _model.LesContacts[_indiceCourant];
             }
             OnPropertyChanged();
+        }
+
+        public void AjouterPhoto(string fileName)
+        {
+            ContactCourant.ChangerImage(fileName);
+            OnPropertyChanged("Photo");
         }
     }
 }

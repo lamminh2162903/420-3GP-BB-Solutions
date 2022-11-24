@@ -8,6 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="assets\**" />
+    <EmbeddedResource Remove="assets\**" />
+    <None Remove="assets\**" />
+    <Page Remove="assets\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\ViewModel\ViewModel.csproj" />
   </ItemGroup>
 

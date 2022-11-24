@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Input;
 using ViewModel;
@@ -28,12 +29,14 @@ namespace M7_E2
         public static RoutedCommand AjouterContactCmd = new RoutedCommand();
         public static RoutedCommand RetirerContactCmd = new RoutedCommand();
         public static RoutedCommand NouveauContactCmd = new RoutedCommand();
-        public static RoutedCommand AnnulerNouveau = new RoutedCommand();
-
+        public static RoutedCommand AnnulerNouveauCmd = new RoutedCommand();
+        public static RoutedCommand AjouterPhotoCmd = new RoutedCommand();
 
         // Commandes pour les boutons
-        public static RoutedCommand AllerProchain = new RoutedCommand();
-        public static RoutedCommand AllerPrecedent = new RoutedCommand();
+        public static RoutedCommand AllerProchainCmd = new RoutedCommand();
+        public static RoutedCommand AllerPrecedentCmd = new RoutedCommand();
+
+        
 
         // Objets pour la gestion des contacts
 
@@ -46,13 +49,13 @@ namespace M7_E2
 
         private ViewModelContacts _viewModel;
 
+
         public MainWindow()
         {
             champsTexte = new List<TextBox>();
             _viewModel = new ViewModelContacts();
-            dossierBase = $"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}{DIR_SEPARATOR}" +
-                          $"Fichiers-3GP";
-            pathFichier = dossierBase + DIR_SEPARATOR + "contacts.xml";
+
+            pathFichier = _viewModel.DossierBase + "contacts.xml";
             _viewModel.ChargerContacts(pathFichier);
 
             InitializeComponent();
@@ -211,6 +214,23 @@ namespace M7_E2
         private void AllerPrecedent_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             _viewModel.AllerAuPrecedent();
+        }
+
+        private void AjouterPhoto_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void AjouterPhoto_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Image files (*.jpg, *.jpeg, *.png, *.bmp, *.gif)|*.jpg;*.jpeg;*.png;*.bmp;*.gif";
+            openFileDialog.InitialDirectory = dossierBase;
+            bool? resultat = openFileDialog.ShowDialog();
+            if (resultat.HasValue && resultat.Value)
+            {
+                _viewModel.AjouterPhoto(openFileDialog.FileName);
+            }
         }
     }
 }
