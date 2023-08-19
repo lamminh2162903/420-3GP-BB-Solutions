@@ -13,11 +13,3 @@ foreach (Livre livre in tabLivres)
 {
     Console.WriteLine(livre);
 }
-
-// Réponse à l'exercice 4
-//Array.Sort(tabLivres);
-//foreach (Livre unLivre in tabLivres)
-//{
-//    Console.WriteLine(unLivre);
-//}
-//Console.WriteLine();

@@ -20,6 +20,10 @@ catch (ArgumentException ex)
     Console.WriteLine(ex.Message);
 }
 
+// On utilise ici les nullable de C#. L'opérateur de conversion as retourne
+// null si la conversion n'est pas possible. On peut donc tester si la
+// conversion a réussi ou non.
+
 // On dessine le rectangle
 Console.WriteLine("Voici le rectangle: ");
 IDessinable? rectangleDessinable = rectangle as IDessinable;

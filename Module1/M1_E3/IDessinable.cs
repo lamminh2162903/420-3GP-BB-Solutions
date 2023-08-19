@@ -6,7 +6,8 @@
     interface IDessinable
     {
         /// <summary>
-        /// Ne dessine pas directement la chaîne mais retourne une représentation sous la forme d'une chaîne.
+        /// Ne dessine pas directement la forme mais retourne une représentation sous la forme d'une chaîne
+        /// de caractères.
         /// </summary>
         /// <returns>Le dessin de la forme</returns>
         public string DessinerObjet();
