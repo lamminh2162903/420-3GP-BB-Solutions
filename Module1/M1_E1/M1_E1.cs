@@ -9,6 +9,8 @@ tabLivres[2] = new Livre("Fundamentals of Game Design 3rd ed.", "Ernest Adams", 
 tabLivres[3] = new Livre("Game Programming Patterns", "Robert Nystrom", "genever benning", 345, 2014);
 tabLivres[4] = new Livre("Hands-On Machine Learning with Scikit-Learn, Keras & TensorFlow 2nd ed.", "Aurélien Géron", "O'Reilly", 814, 2019);
 
+
+// On affiche les informations sur les livres
 foreach (Livre livre in tabLivres)
 {
     Console.WriteLine(livre);
