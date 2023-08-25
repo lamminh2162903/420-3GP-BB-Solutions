@@ -1,16 +1,13 @@
-﻿using System;
-using M2_ClassesAffaire;
-
-namespace M2_E5
+﻿namespace M2_ClassesAffaire
 { 
     /// <summary>
     /// Classe qui génère des livres de façons de façon aléatoire
     /// </summary>
     public class GenerateurLivre
     {
-        private String[] _tabTitres = new string[15];
-        private String[] _tabAuteurs = new String[15];
-        private String[] _tabEditeurs = new string[15];
+        private string[] _tabTitres = new string[15];   // Les titres
+        private string[] _tabAuteurs = new string[15]; // Les auteurs
+        private string[] _tabEditeurs = new string[15]; // Les éditeurs
         private int _anneeEdition;    // L'année d'édition va monter de 1 à chaque livre pour éviter les doublons
         private Random _rng;
 

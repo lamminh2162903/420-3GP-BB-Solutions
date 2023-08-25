@@ -35,7 +35,7 @@ foreach (int valeur in tabNombres)
 sw.Stop();
 Console.WriteLine($"{sw.ElapsedMilliseconds} millisecondes.");
 
-// Les insertions au début
+// Les insertions au début. On vide les structures avant. 
 listeTableau.Clear();
 listeChaine.Clear();
 

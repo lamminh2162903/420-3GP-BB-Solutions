@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using M2_ClassesAffaire;
-using M2_E5;
 
 const int NOMBRE_LIVRES = 40000;
 
