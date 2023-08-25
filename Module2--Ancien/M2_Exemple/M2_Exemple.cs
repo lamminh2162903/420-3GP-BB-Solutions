@@ -11,9 +11,7 @@ sw.Start();
 string premiereChaine = "";
 for (int i = 0; i < NOMBRE_ITERATIONS; i++)
 {
-    //    premiereChaine = premiereChaine + i + ' ';
-
-    premiereChaine = $"{premiereChaine}{i} ";
+    premiereChaine = premiereChaine + i + ' ';
 }
 sw.Stop();
 Console.WriteLine($"La concaténation a pris {sw.ElapsedMilliseconds} millisecondes");
