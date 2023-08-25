@@ -85,7 +85,7 @@ namespace M1_E1
         }
 
         /// <summary>
-        /// Retourne les inforations du livre sous la forme d'une chaîne de caractères.
+        /// Retourne les informations du livre sous la forme d'une chaîne de caractères.
         /// </summary>
         /// <returns>Les informations sur le livre</returns>
         public override string ToString()
