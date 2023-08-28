@@ -67,10 +67,8 @@ namespace M2_ClassesAffaire
         /// </summary>
         public string Cle
         {
-            get
-            {
-                return Titre + Auteur + Editeur + Annee.ToString();
-            }
+            get;
+            private set;
         }
 
         /// <summary>
@@ -88,6 +86,7 @@ namespace M2_ClassesAffaire
             Editeur = editeur;
             NombrePages = nombrePages;
             Annee = annee;
+            Cle = Titre + Auteur + Editeur + Annee.ToString();
         }
 
         /// <summary>

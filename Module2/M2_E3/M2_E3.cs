@@ -1,17 +1,18 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Collections.Generic;
 using M2_ClassesAffaire;
 
 const int NOMBRE_LIVRES = 40000;
 
 
-Livre[] tableauLivres = new Livre[NOMBRE_LIVRES];
+Livre[] tableauLivres = new Livre[NOMBRE_LIVRES];   // Les livres aléatoires
+SortedSet<Livre> arbreLivres = new SortedSet<Livre>(); // l'arbre binaire de fouille
+HashSet<Livre> hashLivres = new HashSet<Livre>();  // la table de hachage
+Dictionary<string, Livre> dicLivres = new Dictionary<string, Livre>();  // le dictionnaire
+
 
 CreerLivres(tableauLivres);
-
-SortedSet<Livre> arbreLivres = new SortedSet<Livre>();
-HashSet<Livre> hashLivres = new HashSet<Livre>();
-Dictionary<string, Livre> dicLivres = new Dictionary<string, Livre>();
 
 InsererDansArbre(arbreLivres, tableauLivres);
 InsererDansTable(hashLivres, tableauLivres);
@@ -22,6 +23,7 @@ ChercherDansTable(hashLivres, tableauLivres);
 ChercherDansDictionnaire(dicLivres, tableauLivres);
 
 
+// Création des livres
 void CreerLivres(Livre[] tab)
 {
     GenerateurLivre generateur = new GenerateurLivre();
@@ -31,57 +33,55 @@ void CreerLivres(Livre[] tab)
     }
 }
 
+//Insertion dans arbre
 void InsererDansArbre(SortedSet<Livre> arbreLivres, Livre[] tableauLivres)
 {
     Console.Write("Insertions dans SortedSet: ");
-    long avant = DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond;
-
+    Stopwatch sw = new Stopwatch();
+    sw.Start();
     foreach (Livre unLivre in tableauLivres)
     {
         arbreLivres.Add(unLivre);
     }
-
-    long apres = DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond;
-    long tempsOperation = apres - avant;
-    Console.WriteLine(tempsOperation + " millisecondes.");
+    sw.Stop();
+    Console.WriteLine($" {sw.ElapsedMilliseconds} millisecondes.");
 }
 
+//Insertion dans table de hachage
 void InsererDansTable(HashSet<Livre> hashLivres, Livre[] tableauLivres)
 {
     Console.Write("Insertions dans HashSet: ");
-    long avant = DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond;
-
+    Stopwatch sw = new Stopwatch();
+    sw.Start();
     foreach (Livre unLivre in tableauLivres)
     {
         hashLivres.Add(unLivre);
     }
-
-    long apres = DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond;
-    long tempsOperation = apres - avant;
-    Console.WriteLine(tempsOperation + " millisecondes.");
+    sw.Stop();
+    Console.WriteLine($" {sw.ElapsedMilliseconds} millisecondes.");
 }
 
+// Insertion dans dictionnaire
 void InsererDansDictionnaire(Dictionary<string, Livre> dicLivres, Livre[] tableauLivres)
 {
     Console.Write("Insertions dans Dictionnary: ");
-    long avant = DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond;
-
+    Stopwatch sw = new Stopwatch();
+    sw.Start();
     foreach (Livre unLivre in tableauLivres)
     {
         string cle = unLivre.Cle;
         dicLivres[cle] = unLivre;
     }
-
-    long apres = DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond;
-    long tempsOperation = apres - avant;
-    Console.WriteLine(tempsOperation + " millisecondes.");
+    sw.Stop();
+    Console.WriteLine($" {sw.ElapsedMilliseconds} millisecondes.");
 }
 
+// Recherche dans arbre
 void ChercherDansArbre(SortedSet<Livre> arbreLivres, Livre[] tableauLivres)
 {
     Console.Write("Recherches dans SortedSet: ");
-    long avant = DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond;
-
+    Stopwatch sw = new Stopwatch();
+    sw.Start();
     foreach (Livre unLivre in tableauLivres)
     {
         bool present = arbreLivres.Contains(unLivre);
@@ -90,17 +90,16 @@ void ChercherDansArbre(SortedSet<Livre> arbreLivres, Livre[] tableauLivres)
             Console.WriteLine("Livre absent: " + unLivre.ToString());
         }
     }
-
-    long apres = DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond;
-    long tempsOperation = apres - avant;
-    Console.WriteLine(tempsOperation + " millisecondes.");
+    sw.Stop();
+    Console.WriteLine($" {sw.ElapsedMilliseconds} millisecondes.");
 }
 
+// Recherches dans table de hachage
 void ChercherDansTable(HashSet<Livre> hashLivres, Livre[] tableauLivres)
 {
-    Console.Write("Recherches dans HashSet: ");
-    long avant = DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond;
-
+    Console.Write("Recherches dans table de hachage: ");
+    Stopwatch sw = new Stopwatch();
+    sw.Start();
     foreach (Livre unLivre in tableauLivres)
     {
         bool present = hashLivres.Contains(unLivre);
@@ -109,17 +108,16 @@ void ChercherDansTable(HashSet<Livre> hashLivres, Livre[] tableauLivres)
             Console.WriteLine("Livre absent: " + unLivre.ToString());
         }
     }
-
-    long apres = DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond;
-    long tempsOperation = apres - avant;
-    Console.WriteLine(tempsOperation + " millisecondes.");
+    sw.Stop();
+    Console.WriteLine($" {sw.ElapsedMilliseconds} millisecondes.");
 }
 
+// Recherche dans dictionnaire
 void ChercherDansDictionnaire(Dictionary<string, Livre> dicLivres, Livre[] tableauLivres)
 {
     Console.Write("Recherches dans Dictionnary: ");
-    long avant = DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond;
-
+    Stopwatch sw = new Stopwatch();
+    sw.Start();
     foreach (Livre unLivre in tableauLivres)
     {
         string cle = unLivre.Cle;
@@ -133,8 +131,6 @@ void ChercherDansDictionnaire(Dictionary<string, Livre> dicLivres, Livre[] table
             Console.WriteLine("Livre absent: " + unLivre.ToString());
         }
     }
-
-    long apres = DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond;
-    long tempsOperation = apres - avant;
-    Console.WriteLine(tempsOperation + " millisecondes.");
+    sw.Stop();
+    Console.WriteLine($" {sw.ElapsedMilliseconds} millisecondes.");
 }

@@ -44,7 +44,7 @@ SupprimerSortedSet(arbre, tableauValeurs);
 Console.WriteLine();
 
 
-
+// Insère dans la liste triée
 void InsererSortedList(SortedList<int, int> liste, int[] tableau)
 {
     Console.Write("Insertions dans SortedList: ");
@@ -58,6 +58,7 @@ void InsererSortedList(SortedList<int, int> liste, int[] tableau)
     Console.WriteLine($"{sw.ElapsedMilliseconds} millisecondes.");
 }
 
+// Insère dans l'arbre binaire de fouille
 void InsererSortedSet(SortedSet<int> arbre, int[] tableau)
 {
     Console.Write("Insertions dans SortedSet: ");
@@ -71,6 +72,7 @@ void InsererSortedSet(SortedSet<int> arbre, int[] tableau)
     Console.WriteLine($"{sw.ElapsedMilliseconds} millisecondes.");
 }
 
+//Parcours dans la liste triée
 void ParcourirSortedList(SortedList<int, int> liste)
 {
     Console.Write("Parcours dans SortedList: ");
@@ -84,6 +86,7 @@ void ParcourirSortedList(SortedList<int, int> liste)
     Console.WriteLine($"{sw.ElapsedMilliseconds} millisecondes.");
 }
 
+//Parcours dans l'arbre binaire de fouille
 void ParcourirSortedSet(SortedSet<int> arbre)
 {
     Console.Write("Parcours dans SortedSet: ");
@@ -97,6 +100,7 @@ void ParcourirSortedSet(SortedSet<int> arbre)
     Console.WriteLine($"{sw.ElapsedMilliseconds} millisecondes.");
 }
 
+//Recherches dans la liste triée
 void ChercherSortedList(SortedList<int, int> liste, int[] tableau)
 {
     Console.Write("Recherches dans SortedList: ");
@@ -110,6 +114,7 @@ void ChercherSortedList(SortedList<int, int> liste, int[] tableau)
     Console.WriteLine($"{sw.ElapsedMilliseconds} millisecondes.");
 }
 
+//Recherches dans l'arbre binaire
 void ChercherSortedSet(SortedSet<int> arbre, int[] tableau)
 {
     Console.Write("Recherches dans SortedSet: ");
@@ -123,6 +128,7 @@ void ChercherSortedSet(SortedSet<int> arbre, int[] tableau)
     Console.WriteLine($"{sw.ElapsedMilliseconds} millisecondes.");
 }
 
+//Suppressions dans la liste triée
 void SupprimerSortedList(SortedList<int, int> liste, int[] tableau)
 {
     Console.Write("Suppressions dans SortedList: ");
@@ -136,6 +142,7 @@ void SupprimerSortedList(SortedList<int, int> liste, int[] tableau)
     Console.WriteLine($"{sw.ElapsedMilliseconds} millisecondes.");
 }
 
+//Suppressions dans l'arbre binaire de fouille
 void SupprimerSortedSet(SortedSet<int> arbre, int[] tableau)
 {
     Console.Write("Suppressions dans SortedSet: ");
