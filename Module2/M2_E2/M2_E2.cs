@@ -5,7 +5,7 @@ using System.Diagnostics;
 
 const int TAILLE_ECHANTILLON = 125000;  // Le nombre d'éléments
 const int NOMBRE_RECHERCHES = 100000;  // Le nombre de recherches
-const int NOMBRE_SUPPRESSIONS = 50000; // Le nbombre de suppressions
+const int NOMBRE_SUPPRESSIONS = 50000; // Le nombre de suppressions
 
 SortedList<int, int> listeTriee = new SortedList<int, int>();
 SortedSet<int> arbre = new SortedSet<int>();
