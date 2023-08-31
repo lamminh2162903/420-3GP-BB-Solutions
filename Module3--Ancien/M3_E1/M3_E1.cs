@@ -1,6 +1,4 @@
-﻿// Programme qui illustre des problèmes de synchronisation
-
-using System;
+﻿using System;
 using System.Threading;
 
 
