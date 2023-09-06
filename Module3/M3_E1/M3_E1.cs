@@ -2,7 +2,7 @@
 using System.Threading;
 
 
-object LOCK = new Object();
+object verrouVariablePartagee = new Object();
 
 const int NOMBRE_THREADS = 100;
 const int NOMBRE_BOUCLES = 10000;
@@ -35,7 +35,7 @@ void IncrementerValeur()
 {
     for (int i = 0; i < NOMBRE_BOUCLES; i++)
     {
-        lock (LOCK)
+        lock (verrouVariablePartagee)
         {
             valeurPartagee = valeurPartagee + 1;
         }
