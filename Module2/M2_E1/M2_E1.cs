@@ -3,7 +3,7 @@ using M2_ClassesAffaire;
 
 // Programme qui fait des tests de performances sur les classes List et LinkedList
 const int NOMBRE_ELEMENTS = 500000; // Le nombre d'éléments à traiter
-const int NOMBRE_RECHERCHES = 50000;  // Le nombre d'incices à chercher
+const int NOMBRE_RECHERCHES = 5000;  // Le nombre d'incices à chercher
 List<int> listeTableau = new List<int>(); // La liste implémentée avec un tableau
 LinkedList<int> listeChaine = new LinkedList<int>(); // La liste implémentée avec un chaînage
 Stopwatch sw = new Stopwatch();  // Pour mesurer le temps des opérations.
